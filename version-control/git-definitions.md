@@ -10,3 +10,4 @@ A branch is a copy of a program that you can work on without affecting the "mast
 A commit records changes to a repository with a descriptive message. A good commit message will describe the change that has been made. 
 * What is a merge conflict?
 A merge conflict occurs when, for example, two lines of code are modified by two different people, or if one line is deleted while the same line in another branch is kept. If this happens, Git doesn't know which branch to use and will raise a conflict that will need to be resolved. 
+*here is my slightly edited file*
