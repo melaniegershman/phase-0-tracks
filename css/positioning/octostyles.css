@@ -1,0 +1,30 @@
+h1 {
+	color: pink;
+	font-family: Futura, sans-serif;
+}
+
+#octopus {
+	display: block;
+	margin: auto;
+	position: relative;
+	z-index: -1;
+}
+
+#glasses {
+	display: block;
+	margin: auto;
+	position: relative;
+	top: 323px;
+	left: 5px;
+	z-index: 1;
+}
+
+#hat {
+	display: block;
+	margin: auto;
+	position: relative;
+	top: 77px;
+	left: 18px;
+	z-index: 0;
+	transform: rotate(6deg);
+}
