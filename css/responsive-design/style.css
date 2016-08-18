@@ -9,9 +9,20 @@ cite {
   margin-top: 10px;
 }
 
+#external-links {
+  width: 20%;
+  display: inline-block;
+  vertical-align: top;
+}
+
 #external-links ul {
   list-style-type: none;
   padding-left: 0px;
+}
+
+main {
+  width: 79%;
+  display: inline-block;
 }
 
 /* you're welcome to edit the
@@ -30,3 +41,21 @@ figcaption {
   font-style: italic;
   text-align: right;
 }
+
+body {
+  max-width: 960px;
+  border: red solid 1px;
+}
+
+@media screen and (max-width: 768px) {
+  #external-links {
+    display: block;
+    width: 50%;
+  }
+}
+
+/*@media screen and (max-width: 500px) {
+  body {
+    background-color: hotpink;
+  }
+}*/
