@@ -44,16 +44,26 @@ figcaption {
 
 body {
   max-width: 960px;
-  border: red solid 1px;
 }
 
 @media screen and (max-width: 768px) {
   #external-links {
     display: block;
-    width: 50%;
+    width: 100%;
+  }
+  main::before {
+    content: "TLDR? The goods are at the bottom.";
+    background-color: orange;
+  }
+  #external-links li {
+    padding: 10px 5px;
+    display: inline-block;
+    width: 30%;
   }
 }
 
+
+}
 /*@media screen and (max-width: 500px) {
   body {
     background-color: hotpink;
