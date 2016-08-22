@@ -1,0 +1,31 @@
+.column-1 {
+  display: inline-block;
+  width: 48%;
+  vertical-align: top;
+  padding-left: 5px;
+  background-color: #C7CB85;
+  box-shadow: 3px 3px 5px grey;
+}
+
+.column-2 {
+  display: inline-block;
+  width: 48%;
+  vertical-align: top;
+  padding-left: 5px;
+  background-color: #C7CB85;
+  box-shadow: 3px 3px 5px grey;
+}
+
+body {
+  width: 100%;
+  font-family: Helvetica, sans-serif;
+  background-color: #EAF4D3;
+}
+
+h1 {
+  background-color: #AEB4A9;
+}
+
+h2 {
+  
+}
