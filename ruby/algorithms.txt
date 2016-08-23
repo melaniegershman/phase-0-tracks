@@ -1,0 +1,25 @@
+Personal Robot: Using an Elevator Instructions
+- Determine floor number, “x”.
+- Press elevator call button.
+	- If going up, select ^ arrow.
+	- If going down, select v arrow.
+- Wait in lobby until elevator arrives and doors open.
+- Enter elevator.
+- Look at floor number button range. When floor number == “x”, press button.
+- Wait in elevator until “x” floor is reached, then exit the elevator. 
+
+Real-Life Algorithm: Making Coffee in a French Press
+- Heat your water until boiling. 
+- Add coffee beans to grinder until you reach 56 grams.
+- Grind 56 grams of coffee beans until they are coarse.
+- Pour ground beans into a French press.
+- When water reaches a boil, remove from heat and let cool for 30 seconds. 
+- Pour water until your press is filled halfway.
+- Set timer for four minutes.
+- Begin seconds counter at 60 seconds.
+	- Subtract 1 from seconds counter each time a second passes until you reach 0.
+	- When you reach 0, stir coffee and fill the carafe to the top.
+	- Leave carafe to finish brewing.
+- When 4-minute timer goes off: 
+	- Plunge the lid down to press down the coffee grinds. 
+	- Pour coffee into mug. 
