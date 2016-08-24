@@ -12,19 +12,16 @@ def vampire_interview(employees)
 		garlic = gets.chomp
 		puts "Would you like to enroll in the company’s health insurance?"
 		insurance = gets.chomp
-		
+		# Allergy test
 		puts "Please list your allergies one at a time. Type 'done' when you are finished."
 		allergies = gets.chomp.downcase
-		until allergies == "done"
+		until allergies == "done" || allergies == "sunshine"
 			puts "Thank you. Please list your allergies one at a time. Type 'done' when you are finished."
-				allergies = gets.chomp.downcase
-			if allergies == "sunshine" # ----->>> something is going on here where sunshine isnt registering the first time its typed!!!!
-				break
-			end
+			allergies = gets.chomp.downcase
 		end
-		
+		# Conditional
 		if allergies == "sunshine"
-			puts "Probably a vampire."
+			p "Probably a vampire."
 		elsif name == "Drake Cula" || name == "Tu Fang"
 			p "Definitely a vampire."
 		elsif (2016 - year != age) && (garlic == "no" && insurance == "no")
