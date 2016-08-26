@@ -36,6 +36,10 @@ def encryptor(msg)
 	return msg
 end
 
+#DRIVER CODE:
+puts encryptor("abc")
+puts encryptor("zed")
+
 #Decryptor 
 def decryptor(msg)
 	i = 0
@@ -56,3 +60,6 @@ def decryptor(msg)
 	return decrypted
 end
 
+#DRIVER CODE:
+puts decryptor("bcd")
+puts decryptor("afe")
