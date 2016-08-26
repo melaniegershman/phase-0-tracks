@@ -33,33 +33,37 @@ def encryptor(msg)
 		end
 		i += 1
 	end
-	return msg
+	msg
 end
 
 #DRIVER CODE:
-puts encryptor("abc")
-puts encryptor("zed")
+p encryptor("abc")
+p encryptor("zed")
 
 #Decryptor 
 def decryptor(msg)
 	i = 0
 	alphabet = "abcdefghijklmnopqrstuvwxyz" 
-	#assign empty string to collect letters
-	decrypted = "" 
 	while i < msg.length
-		if msg[i] == "z"
-			msg[i] = "a"
-		elsif msg[i] == " "
-			decrypted[i] = msg[i]
+		# if msg[i] == "z"
+		# 	msg[i] = "a"
+		# elsif msg[i] == " "
+		# 	msg[i] = msg[i]
 		else
-			alpha_index = (alphabet.index(msg[i])) - 1
-		  	decrypted[i] = alphabet[alpha_index]
-		end
+			alpha_index = (alphabet.index(msg[i])) - 1 
+		  	msg[i] = alphabet[alpha_index]
+	  	end
 	i += 1
 	end
-	return decrypted
+	msg
 end
 
 #DRIVER CODE:
-puts decryptor("bcd")
-puts decryptor("afe")
+p decryptor("bcd")
+p decryptor("afe")
+
+p decryptor(encryptor("swordfish"))
+
+#The order of operations is what allows nesting encryptor inside of decryptor to work. 
+# Encryptor encrypts "swordfish", which gives us a new parameter ("txpsegjti") to be decoded 
+# by decryptor. Decryptor accepts the new string and proceeds to decode "txpsegjti".
