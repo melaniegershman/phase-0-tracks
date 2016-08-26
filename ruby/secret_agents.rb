@@ -85,6 +85,11 @@ password = gets.chomp
 # ask whether to encrypt or decrypt
 puts "Encryptor or decryptor?"
 user_input = gets.chomp.downcase
+until user_input == "encryptor" || user_input == "decryptor"
+	puts "Please only enter encryptor or decryptor"
+	user_input = gets.chomp.downcase
+end
+
 if user_input == "encryptor"
 	p encryptor(password)
 elsif user_input == "decryptor"
