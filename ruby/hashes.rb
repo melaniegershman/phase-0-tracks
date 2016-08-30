@@ -1,5 +1,12 @@
-# Write a program that will allow an interior designer to enter the details of a given client: 
-# the client's name, age, number of children, decor theme and more. 
+# PSEUDOCODE:
+# Ask designer questions about client
+# Store responses
+# Use stored responses to access keys and update values of a hash with initially empty values
+# Print out updated hash
+# Ask if user wants to make changes to input
+# If user wants to make changes, ask which key needs to be updated.
+# Store key and updated value-- if updated value is Fixnum, convert user input to integer.
+# Return updated hash and exit program.
 
 # Helper methods to use in final program
 def name
@@ -27,7 +34,6 @@ def color
 	color = gets.chomp
 end
 # Give the user the opportunity to update a key. If the designer says "none", skip it. 
-# Your program should ask for a new value and update the key.
 def update(hash)
 	puts "Here is a summary of your client's information: #{hash}. Would you like to make changes? Type done if you are finished."
 	input = gets.chomp
@@ -42,10 +48,11 @@ def update(hash)
 		else
 			new_value = gets.chomp
 		end	
-
+		# Return updated key-value pair
 		hash[updated_key] = new_value
 	end
 	puts "Thank you for using Interior Solutions."	
+	# Return updated hash
 	return hash 
 end
 
@@ -63,6 +70,7 @@ def client_form
 	client_pref[:children] = children
 	client_pref[:decor] = decor
 	client_pref[:color] = color
+	# Run "update" method to determine if any changes need to be made to program
 	client_pref = update(client_pref)
 	# Print the latest version of the hash, and exit the program.
 	puts "Here is a summary of your client's information: #{client_pref}."
