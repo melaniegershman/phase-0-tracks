@@ -17,20 +17,22 @@
 # errors.
 # Print the latest version of the hash, and exit the program.
 
-client_pref = {
-	:name => "",
-	:age => '',
-	:children => '',
-	:decor => "",
-}
-
-def greeting
-	puts "Hello, welcome to Interior Solutions. Please help us help you by answering the following questions."
-end
-
 def name
 	puts "What is your full name?"
-	client_pref[name] = gets.chomp
+	client_name = gets.chomp
 end
 
-p client_pref
+def client_form
+client_pref = {
+	name: "",
+	age: '',
+	children: '',
+	decor: "",
+}
+	puts "Hello, welcome to Interior Solutions. Please help us help you by answering the following questions."
+	client_pref[:name] = name
+	p client_pref
+end
+
+
+client_form
