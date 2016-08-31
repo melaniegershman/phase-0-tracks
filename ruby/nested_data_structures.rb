@@ -52,8 +52,8 @@ puts "-" * 10
 puts rappers[:nas][:gods_son][:i_can]
 rappers[:nas][:gods_son]
 puts "-" * 10
-#Fill in the lyric: "But I know yall wanted that 808, can you feel that B-A-S-S, _____"
-puts rappers[:outkast][:speakerboxxx][:the_way_you_move][2].upcase
+#Fill in the lyric: "But I know yall wanted that 808, can you feel that ______, bass"
+puts rappers[:outkast][:speakerboxxx][:the_way_you_move][2].upcase.chars.join('-')
 puts "-" * 10
-# where are you?
+# where did you start?
 puts rappers[:drake][:nothing_was_the_same][:started_from_the_bottom].concat(" from the bottom now we here")
