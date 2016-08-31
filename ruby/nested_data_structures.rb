@@ -19,7 +19,7 @@ rappers = {
 		},
 	outkast: {
 		atliens: {
-			two_dope_boys: ["Comin up on ya from the South", "the A-T-Liens aint changed", "Cooler than most players claim to be" ]
+			two_dope_boys: ["Comin up on ya from the South", "the A-T-Liens aint changed", "Cooler than most players claim to be" ],
 			atliens: ["Cause I'm cooler than a polar bear's toenails", "Now throw your hands in the air", "And wave 'em like you just don't care"],
 			elevators: ["Me and you", "Your momma and your cousin too", "Rolling down the strip on Vogues"]
 			},
@@ -33,11 +33,27 @@ rappers = {
 		},
 	nas: {
 		it_was_written: {
-			if_i_ruled_the_world: ["If I ruled the world", "Still livin' for today", "in these last days and times"]
+			if_i_ruled_the_world: ["If I ruled the world", "Still livin' for today", "in these last days and times"],
 			},
 		gods_son: {
-			i_can: ["I know I can", "Be what I wanna be", "If I work hard at it", "I'll be where I wanna be"]
+			i_can: ["I know I can", "Be what I wanna be", "If I work hard at it", "I'll be where I wanna be"],
 			made_you_look: ["Stay laced in the best", "well dressed with finesse"]
 			}
 		},
 }
+
+#print lyrics to screen
+puts rappers[:drake][:nothing_was_the_same][:worst_behavior]
+puts "-" * 10 #breaks up my commands in IRB for better visibility
+#what reason does nas give to make you look?
+puts rappers[:nas][:gods_son][:made_you_look][0]
+puts "-" * 10
+#how does nas show he has a growth mindset?
+puts rappers[:nas][:gods_son][:i_can]
+rappers[:nas][:gods_son]
+puts "-" * 10
+#Fill in the lyric: "But I know yall wanted that 808, can you feel that B-A-S-S, _____"
+puts rappers[:outkast][:speakerboxxx][:the_way_you_move][2].upcase
+puts "-" * 10
+# where are you?
+puts rappers[:drake][:nothing_was_the_same][:started_from_the_bottom].concat(" from the bottom now we here")
