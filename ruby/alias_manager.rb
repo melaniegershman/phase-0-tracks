@@ -71,15 +71,19 @@ end
 
 #USER INTERFACE
 def alias_manager
+	alias_container = {}
 	puts "Welcome to Alias Manager 5000. Please enter your first and last name. Enter -quit- When you are finished."
 	user_input = gets.chomp.downcase
 	while user_input != "quit"
 		reversed_name = reverse_name(user_input)
 		vowels_changed = next_vowel(reversed_name)
 		user_alias = next_consonant(vowels_changed)
+		alias_container[user_input] = user_alias
 		user_input = gets.chomp.downcase
+		if user_input == "quit"
+			puts alias_container.each_pair {|input, output| puts "#{output} is also known as #{input}."}
+		end
 	end
-	p user_alias
 end
 
 alias_manager
