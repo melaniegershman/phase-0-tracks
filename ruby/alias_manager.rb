@@ -11,8 +11,6 @@
 # => Isolate vowels to compare to the characters in your name
 # => If a character is a vowel, change it to the next vowel in the sequence mentioned above
 # => First, find the vowel, change it, & if it's a consonant, leave it unchanged & move onto the next
-# => If a vowel in the name_array == a vowel in the vowel array, the vowel in the name array must 
-# 		be reassigned to = vowel[x+1]
 
 # Change the consonants to the next consonant - DONE
 # => Follow protocol from "vowel" pseudocode, but with consonants
@@ -33,11 +31,12 @@ def reverse_name(name)
 end
 
 # Vowel changer
-def vowel_changer(name)
+def next_vowel(name)
 	name_array = name.downcase.chars
 	vowels = %w{a e i o u}
 	# loop through name and check for vowels
 	name_array.map! do |letter| 
+		# check for edge cases
 		if letter == "u"
 			letter = "a"
 		elsif vowels.include?(letter)
@@ -52,10 +51,11 @@ def vowel_changer(name)
 end
 
 # Consonant changer
-def consonant_changer(name)
+def next_consonant(name)
 	name_array = name.downcase.chars
 	consonants = %w{b c d f g h j k l m n p q r s t v w x y z}
 	name_array.map! do |letter| 
+		# check for edge cases
 		if letter == "z"
 			letter = "b"
 		elsif consonants.include?(letter)
@@ -69,9 +69,18 @@ def consonant_changer(name)
 	name_array.join('').split(" ").each{|i| i.capitalize!}.join(" ")
 end
 
-reversed_name = reverse_name("Zura Uzi")
-vowels_changed = vowel_changer(reversed_name)
-p consonant_changer(vowels_changed)
+#USER INTERFACE
+def alias_manager
+	puts "Welcome to Alias Manager 5000. Please enter your first and last name. Enter -quit- When you are finished."
+	user_input = gets.chomp.downcase
+	while user_input != "quit"
+		reversed_name = reverse_name(user_input)
+		vowels_changed = next_vowel(reversed_name)
+		user_alias = next_consonant(vowels_changed)
+		user_input = gets.chomp.downcase
+	end
+	p user_alias
+end
 
-
+alias_manager
 
