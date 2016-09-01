@@ -38,7 +38,9 @@ def vowel_changer(name)
 	vowels = %w{a e i o u}
 	# loop through name and check for vowels
 	name_array.map! do |letter| 
-		if vowels.include?(letter)
+		if letter == "u"
+			letter = "a"
+		elsif vowels.include?(letter)
 			# if a letter is a vowel, reassign the index to that of the next vowel in the vowel array
 			new_vowel_index = vowels.index(letter) + 1
 			new_vowel = vowels[new_vowel_index]
@@ -54,7 +56,9 @@ def consonant_changer(name)
 	name_array = name.downcase.chars
 	consonants = %w{b c d f g h j k l m n p q r s t v w x y z}
 	name_array.map! do |letter| 
-		if consonants.include?(letter)
+		if letter == "z"
+			letter = "b"
+		elsif consonants.include?(letter)
 			new_consonant_index = consonants.index(letter) + 1
 			new_consonant = consonants[new_consonant_index]
 		else
@@ -65,7 +69,7 @@ def consonant_changer(name)
 	name_array.join('').split(" ").each{|i| i.capitalize!}.join(" ")
 end
 
-reversed_name = reverse_name("Igor Langshteyn")
+reversed_name = reverse_name("Zura Uzi")
 vowels_changed = vowel_changer(reversed_name)
 p consonant_changer(vowels_changed)
 
