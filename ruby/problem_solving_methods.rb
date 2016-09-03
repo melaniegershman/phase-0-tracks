@@ -1,7 +1,7 @@
 =begin
 Paired with Derrick Carr
 Pseudocode
-
+Release 0: Find an Index
 Take an array and an integer. Search array for integer. Return index of that integer. Don't use built-in array methods.
 
 Take an array, an integer
@@ -14,7 +14,6 @@ Method takes array and integer as input
 Loop through the array, comparing each number to integer search how
   - If it matches, return index at that point in array
   - Otherwise return nil.
-
 =end
 
 def search_arr(array, n)
@@ -26,7 +25,6 @@ def search_arr(array, n)
   end
 end
 # Each broke for us. Need to research how to use it.
-
 
 =begin
 Release 1: Calculate Fibonacci Numbers
@@ -88,7 +86,12 @@ def shell_sort(num_arr)
     gap /= 2
 
   end
+  puts "Here is the array before sorting:"
+  num_arr.inspect
+  puts "Here is the array after sorting:"
+  [new array goes here].inspect
 end
+
 
 =begin
 Manually typing out the algorithms efforts
@@ -97,13 +100,46 @@ Manually typing out the algorithms efforts
 [8,4,0,9,5,1, 10,6,2,11,7,3] #recombined
 [8, 9, 10, 11 ][4, 5, 6, 7][0, 1, 2, 3] #3 step
 [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0] #recombined
-
-[0 ,2 ,5, 4, 9, 10, 11, 3, 7, 8, 6, 1]#initial
-[0, 9, 7][2, 10, 8][5, 11, 6][4, 3, 1]# 4 step
-[0, 7, 9, 2, 8, 10, 5, 6, 11, 1, 3, 4]#recombine-sort
-[0,2,5,1][7,8,6,3][9,10,11,4] #3step
-[0, 1, 2, 5, 3, 6, 7, 8, 4, 9, 10, 11] #r
-[0, 2, 3, 7, 4, 10][1, 5, 6, 8, 9, 11]
-%w{0 2 3 4 7 10 1 5 6 8 9 11}
-%w{0 2}%w{2 3}%w{3 4} %w{7 10 } %w{1 5} %w{6 8}
 =end
+
+=begin
+Release 2: Bubble Sort Implementation
+- determine the length of the array and the amount of passes you will need to sort it. if array length is 'n', you will need to pass through the array 'n-1' times.
+- A pass is the movement of a number across the entire array. The nth pass begins when you start at index 0 again. Until length is 0 (no more items to check), continue passing through the array.
+- Loop through the array and compare numbers one at a time to determine which has a higher value
+- If the numbers are out of order, swap them
+- The largest values will bubble up to the right of the array, and will no longer need to be tested
+- if a number is at the end of the array, do not test
+- if a number is at the second-to-last place of the array at the beginning of the third pass, you do not need to test it
+- As each number with the largest value is correctly placed, you will need to loop through one less time
+- To optimize, keep track of whether numbers were swapped, and if any were swapped, then you know it wasn't the final loop. 
+- When no numbers are swapped, your evaluation is done
+=end
+def ascend_bubble_sort(arr)
+  len = arr.length
+  until len == 0  
+    i = 0
+    swap_count = 0
+    while i < arr.length - 1
+      current_num = arr[i]
+      next_num = arr[i +1]
+      if current_num > next_num
+        arr[i], arr[i +1] = arr[i +1], arr[i] #swap
+        swap_count += 1
+         #p swap_count #[debugger to check how many swaps are being made]
+      end
+      i += 1
+    end
+    if swap_count == 1
+      break
+    end
+  len -= 1
+  #p arr #[debugger to check how many times the array is being checked]
+  end
+  arr
+end
+
+p ascend_bubble_sort([6, 5, 4, 3, 2, 17, 14, 52])
+# p ascend_bubble_sort([5, 4, 33, 2, 1, 6])
+# p ascend_bubble_sort([4, 3, 21, 12, 35, 6])
+# p ascend_bubble_sort([3, 2, 1, 4, 5, 6])
