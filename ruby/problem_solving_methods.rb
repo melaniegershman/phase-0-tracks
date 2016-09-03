@@ -55,6 +55,7 @@ end
 fibonacci(100).last == 218922995834555169026
 
 =begin
+Release 2: Implement a Sorting Method
 Pseudocode: Shell Sort
 
 Consider an array
@@ -69,38 +70,33 @@ Loop through the array while g > 0
 Return the combined array
 =end
 
-def shell_sort(num_arr)
-  gap = num_arr.length/2 #automatically passed through .floor
+array =[9, 6, 12, 2,  7, 5, 1]
+
+def shell_sort(array)
+  p array
+  gap = array.length/2
   while gap > 0
-    sub_index = 0
-      while sub_index < num_arr.length
-        sub_values = []
-        sub_values << sub_index
-        new_arr = []
-        new_arr << num_arr[sub_index]
-        sub_index += gap
+    puts "gap is currently #{gap}"
+    idx = 0
+    while idx < array.length - gap
+      # while loop to move multiple steps
+      while array[idx + gap] < array[idx]
+        array[idx+gap],array[idx] = array[idx],array[idx+gap]
+        if idx > 0
+          idx -= 1
+        else
+          break
+        end
       end
-      #sort new_arr
-      num_arr[]
-
-    gap /= 2
-
+      idx += 1
+    end
+    gap = gap/2
+    p "-" * 10
+   p array
   end
-  puts "Here is the array before sorting:"
-  num_arr.inspect
-  puts "Here is the array after sorting:"
-  [new array goes here].inspect
 end
 
-
-=begin
-Manually typing out the algorithms efforts
-[0,1,2,3,4,5,6,7,8,9,10,11] #initial
-[0,4,8][1,5,9][2,6,10][3,7,11] #4 step
-[8,4,0,9,5,1, 10,6,2,11,7,3] #recombined
-[8, 9, 10, 11 ][4, 5, 6, 7][0, 1, 2, 3] #3 step
-[11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0] #recombined
-=end
+shell_sort(array)
 
 =begin
 Release 2: Bubble Sort Implementation
