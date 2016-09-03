@@ -73,17 +73,27 @@ Return the combined array
 array =[9, 6, 12, 2,  7, 5, 1]
 
 def shell_sort(array)
+<<<<<<< Updated upstream
   p array
   gap = array.length/2
   while gap > 0
     puts "gap is currently #{gap}"
+=======
+  # p array
+  gap = array.length/2
+  while gap > 0
+>>>>>>> Stashed changes
     idx = 0
     while idx < array.length - gap
       # while loop to move multiple steps
       while array[idx + gap] < array[idx]
         array[idx+gap],array[idx] = array[idx],array[idx+gap]
         if idx > 0
+<<<<<<< Updated upstream
           idx -= 1
+=======
+          idx -= 1 
+>>>>>>> Stashed changes
         else
           break
         end
@@ -91,13 +101,20 @@ def shell_sort(array)
       idx += 1
     end
     gap = gap/2
+<<<<<<< Updated upstream
+=======
+    # puts "new gap is #{gap}"
+>>>>>>> Stashed changes
     p "-" * 10
    p array
   end
 end
 
+<<<<<<< Updated upstream
 shell_sort(array)
 
+=======
+>>>>>>> Stashed changes
 =begin
 Release 2: Bubble Sort Implementation
 - determine the length of the array and the amount of passes you will need to sort it. if array length is 'n', you will need to pass through the array 'n-1' times.
