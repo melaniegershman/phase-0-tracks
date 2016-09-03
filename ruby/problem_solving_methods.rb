@@ -19,12 +19,14 @@ Loop through the array, comparing each number to integer search how
 def search_arr(array, n)
   idx = 0
   while idx < array.length
-    puts "Index is #{idx} and value is #{array[idx]}"
+    # puts "Index is #{idx} and value is #{array[idx]}"
     return idx if array[idx] == n
     idx += 1
   end
+  
 end
-# Each broke for us. Need to research how to use it.
+
+search_arr([1, 2, 3, 4], 3)
 
 =begin
 Release 1: Calculate Fibonacci Numbers
@@ -52,7 +54,7 @@ def fibonacci(num)
   fib_arr
 end
 
-fibonacci(100).last == 218922995834555169026
+p fibonacci(100).last == 218922995834555169026
 
 =begin
 Release 2: Implement a Sorting Method
@@ -70,30 +72,17 @@ Loop through the array while g > 0
 Return the combined array
 =end
 
-array =[9, 6, 12, 2,  7, 5, 1]
-
 def shell_sort(array)
-<<<<<<< Updated upstream
-  p array
-  gap = array.length/2
-  while gap > 0
-    puts "gap is currently #{gap}"
-=======
   # p array
   gap = array.length/2
   while gap > 0
->>>>>>> Stashed changes
     idx = 0
     while idx < array.length - gap
       # while loop to move multiple steps
       while array[idx + gap] < array[idx]
         array[idx+gap],array[idx] = array[idx],array[idx+gap]
-        if idx > 0
-<<<<<<< Updated upstream
-          idx -= 1
-=======
-          idx -= 1 
->>>>>>> Stashed changes
+        if idx >= gap
+          idx -= gap 
         else
           break
         end
@@ -101,20 +90,14 @@ def shell_sort(array)
       idx += 1
     end
     gap = gap/2
-<<<<<<< Updated upstream
-=======
     # puts "new gap is #{gap}"
->>>>>>> Stashed changes
     p "-" * 10
-   p array
+   # p array verify properly sorting
   end
 end
 
-<<<<<<< Updated upstream
-shell_sort(array)
+p shell_sort((1..120).to_a.shuffle)
 
-=======
->>>>>>> Stashed changes
 =begin
 Release 2: Bubble Sort Implementation
 - determine the length of the array and the amount of passes you will need to sort it. if array length is 'n', you will need to pass through the array 'n-1' times.
