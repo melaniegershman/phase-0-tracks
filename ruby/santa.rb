@@ -1,4 +1,5 @@
 class Santa
+# --- RELEASE 3:
 	# refactor getter method:
 	attr_reader :age, :ethnicity
 	# refactor setter method:
@@ -11,7 +12,7 @@ class Santa
 		@reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
 		@age = rand(0..140)
 	end
-
+# --- RELEASE 1:
 	def speak
 		puts "Ho, ho, ho! Haaaappy holidays!"
 	end
@@ -19,11 +20,7 @@ class Santa
 	def eat_milk_and_cookies(cookie)
 		puts "That was a good #{cookie}!"
 	end
-
-	# def attributes
-	# 	puts "Santa is #{@gender}."
-	# end
-
+# --- RELEASE 2:
 	# setter methods - longhand:
 	def celebrate_birthday
 		@age += 1
@@ -49,8 +46,11 @@ class Santa
 	# 	@ethnicity
 	# end
 end
+
+# --- RELEASE 0:
+
 # Empty array to collect the diverse santas
-santas = []
+# santas = []
 
 # Push each individual santa into the santa array
 # santas << Santa.new("agender", "black")
@@ -61,27 +61,31 @@ santas = []
 # santas << Santa.new("gender fluid", "Mystical Creature (unicorn)")
 # santas << Santa.new("N/A", "N/A")
 
-# Gender and ethnicity arrays
-example_genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
-example_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
-# Add some more attributes
-example_ethnicities << "Jewish"
-example_genders << "transgender"
-#Initialize many diverse santas (iterate over the gender and ethnicity arrays)
-example_genders.length.times do |i|
-  puts "Creating a #{example_genders[i]} Santa..."
-  santas << Santa.new(example_genders.sample, example_ethnicities.sample)
-  puts "There are now #{santas.length} Santa instances in this array."
-end
+# # Gender and ethnicity arrays
+# example_genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
+# example_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
+
+# # Add some more attributes
+# example_ethnicities << "Jewish"
+# example_genders << "transgender"
+
+# #Initialize many diverse santas (iterate over the gender and ethnicity arrays)
+# example_genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
+# example_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
+# example_genders.length.times do |i|
+#   puts "Creating a #{example_genders[i]} Santa..."
+#   santas << Santa.new(example_genders.sample, example_ethnicities.sample)
+#   puts "There are now #{santas.length} Santa instances in this array."
+# end
 
 # Tell santas what to do
-santas.each do |santa| 
-	puts "Santa is #{santa.age} years old, #{santa.ethnicity}, and #{santa.gender}."
-	santa.speak
-	santa.eat_milk_and_cookies("Snickerdoodle")
-	santa.celebrate_birthday
-end
-
+# santas.each do |santa| 
+# 	puts "Santa is #{santa.age} years old, #{santa.ethnicity}, and #{santa.gender}."
+# 	santa.speak
+# 	santa.eat_milk_and_cookies("Snickerdoodle")
+# 	santa.celebrate_birthday
+# end
+# --- RELEASE 2 (in action):
 # Santa gets mad at a reindeer
 st_nick = Santa.new("female", "Russian")
 st_nick.get_mad_at("Vixen")
@@ -94,4 +98,22 @@ puts "The elf is now #{elf.gender}!"
 
 # Get santa's age and ethnicity:
 santa_new2 = Santa.new("male", "French")
-puts "Santa is #{santa_new2.age} years old and #{santa_new2.ethnicity}"
+puts "Santa is #{santa_new2.age} years old and #{santa_new2.ethnicity}."
+
+# --- RELEASE 4: print many random santas!
+def initialize_santas(num)
+	santas = []	
+	example_genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
+	example_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
+	num.times do |i|
+	  puts "Creating a new Santa..."
+	  santas << Santa.new(example_genders.sample, example_ethnicities.sample)
+	  puts "There are now #{santas.length} Santa instances in this array."
+	end
+	santas
+end
+
+print_santas = initialize_santas(16)
+print_santas.each_with_index do |santa, i|
+	puts "#{i+1}.Santa is #{santa.age} years old, #{santa.ethnicity}, and #{santa.gender}."
+	end
