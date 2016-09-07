@@ -9,7 +9,7 @@ class Santa
 		@gender = gender
 		@ethnicity = ethnicity
 		@reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
-		@age = 0
+		@age = rand(0..140)
 	end
 
 	def speak
@@ -20,9 +20,9 @@ class Santa
 		puts "That was a good #{cookie}!"
 	end
 
-	def attributes
-		puts "Santa is #{@gender}."
-	end
+	# def attributes
+	# 	puts "Santa is #{@gender}."
+	# end
 
 	# setter methods - longhand:
 	def celebrate_birthday
@@ -69,13 +69,14 @@ example_ethnicities << "Jewish"
 example_genders << "transgender"
 #Initialize many diverse santas (iterate over the gender and ethnicity arrays)
 example_genders.length.times do |i|
-	puts "Creating a #{example_genders[i]} Santa..."
-  santas << Santa.new(example_genders[i], example_ethnicities[i])
+  puts "Creating a #{example_genders[i]} Santa..."
+  santas << Santa.new(example_genders.sample, example_ethnicities.sample)
   puts "There are now #{santas.length} Santa instances in this array."
 end
 
 # Tell santas what to do
 santas.each do |santa| 
+	puts "Santa is #{santa.age} years old, #{santa.ethnicity}, and #{santa.gender}."
 	santa.speak
 	santa.eat_milk_and_cookies("Snickerdoodle")
 	santa.celebrate_birthday
