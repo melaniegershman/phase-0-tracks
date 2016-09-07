@@ -21,7 +21,7 @@ class Santa
 		puts "Santa prefers his reindeer in the following order:"
 		@reindeer_ranking.each_with_index {|reindeer, index| puts "#{index + 1}: #{reindeer}"}
 	end
-
+	# setter methods:
 	def celebrate_birthday
 		@age += 1
 		puts "Santa is now #{@age} years old."
@@ -32,9 +32,23 @@ class Santa
 		puts "If Santa is mad at #{scolded_reindeer}, it's back to the end of the line with #{scolded_reindeer}!"
 		@reindeer_ranking.each_with_index {|reindeer, index| puts "#{index + 1}: #{reindeer}"}
 	end
-end
 
+	def gender=(new_gender)
+		@gender = new_gender
+	end
+
+	# getter methods
+	def age
+		@age
+	end
+
+	def ethnicity
+		@ethnicity
+	end
+end
+# Empty array to collect the diverse santas
 santas = []
+# Push each individual santa into the santa array
 # santas << Santa.new("agender", "black")
 # santas << Santa.new("female", "Latino")
 # santas << Santa.new("bigender", "white")
@@ -42,7 +56,7 @@ santas = []
 # santas << Santa.new("female", "prefer not to say")
 # santas << Santa.new("gender fluid", "Mystical Creature (unicorn)")
 # santas << Santa.new("N/A", "N/A")
-
+# Gender and ethnicity arrays
 example_genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
 example_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
 # Add some more attributes
@@ -52,6 +66,7 @@ example_genders << "transgender"
 example_genders.length.times do |i|
   santas << Santa.new(example_genders[i], example_ethnicities[i])
 end
+
 # Tell santas what to do
 santas.each do |santa| 
 	santa.speak
@@ -59,5 +74,14 @@ santas.each do |santa|
 	santa.attributes
 	santa.celebrate_birthday
 	santa.get_mad_at("Vixen")
-
 end
+# Change santa's gender
+puts "-" * 10
+santa_new = Santa.new("male", "Chinese")
+santa_new.attributes
+santa_new.gender = "female"
+santa_new.attributes
+puts "-" * 10
+# Get santa's age and ethnicity:
+santa_new2 = Santa.new("male", "Chinese")
+puts "Santa is #{santa_new2.age} years old and #{santa_new2.ethnicity}"
