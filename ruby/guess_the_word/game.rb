@@ -34,7 +34,7 @@ class WordGame
 	attr_accessor :game_board
 
 	def initialize
-		@game_board = "-" # --> I'm going to need this value to increase or decrease based on word length.
+		@game_board = [] # --> I'm going to need this to be "-" * word length.
 		@guess_count = 0
 		@is_over = false
 	end
@@ -52,16 +52,26 @@ class WordGame
 		puts "Thank you, #{player_two}."
 		player_two
 	end
+
 	# Ask which player will be keeping the word
 	def assign_keeper(player_one, player_two)
 		puts "#{player_one} and #{player_two}, please tell me who is the keeper of mystery word?"
 		keeper = gets.chomp.capitalize
 		keeper
 	end
+
 	#Ask previously determined 'keeper' for the secret word, and store it in an array.
 	def store_word(keeper)
 		puts "#{keeper}, tell me your word."
-		word = gets.chomp
+		word = gets.chomp.split("")
+	end
+
+	#Display board
+	def display_board(word)
+		puts "You have #{word.length} guesses:"
+		board = "- " * word.length
+		puts board
+		board.split(" ")
 	end
 end
 
@@ -70,4 +80,6 @@ puts "Welcome to Guess-The-Word."
 game = WordGame.new
 player_one = game.user_greet_1
 player_two = game.user_greet_2
-
+keeper = game.assign_keeper(player_one, player_two)
+word = game.store_word(keeper)
+game.display_board(word)
