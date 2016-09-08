@@ -60,12 +60,10 @@ def create_list(input)
     list[x] = 0
   end
   # Print the list to the console
-  puts list
+  puts "Here is the updated list: #{list}"
   # output: a new hash with item names and keys and quantity (the default of 0) as values
   list
 end
-input = "carrots apples"
-create_list(input)
 
 # Method to add an item to a list
 # input: item name, optional quantity(default of 0), list
@@ -123,16 +121,21 @@ def change_qty(item, quantity, list)
 end
 
 # Method to print a list and make it look pretty
+
 # input: list
-# steps: 
-#   Print an introduction to the list to the console
-#   Print out each item name with its quantity as "Item name: Quantity"
-# output: nil (since this method just prints to the console)
+def print_list(list)
+	#   Print an introduction to the list to the console
+	puts "Groceries I need to buy:"
+	#   Print out each item name with its quantity as "Item name: Quantity"
+	list.each {|item, qty| puts "*  #{item.capitalize}: #{qty}"}
+end
 
 # DRIVER CODE:
+input = "carrots apples"
 new_list = create_list(input)
 add_item("juice", 2, new_list)
 add_item("bananas", new_list)
 new_list = add_item("Apples", 45, new_list)
 new_list = remove_item("bananas", new_list)
-change_qty("juice", 3, new_list)
+change_qty("carrots", 3, new_list)
+print_list(new_list)
