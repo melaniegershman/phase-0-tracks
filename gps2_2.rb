@@ -70,13 +70,13 @@ end
 def add_item(item, quantity=0, list)
   # Check if the list already has the lowercased item name
   # IF the list already has the item name, print a warning that the item doesn't exist
-  if list.include?(item.downcase)
+  if list.has_key?(item.downcase)
   	# Add the item name with the optional quantity to the end of the list
-    puts "We already have that!"  
+    puts "We already have #{item.downcase}!"  
   # IF the list doesn't have the item name
   elsif !(list.include?(item.downcase))
-    list[item] = quantity
-    puts list
+    list[item.downcase] = quantity
+    puts "Here is the updated list: #{list}"
   end
   list
 end
@@ -84,14 +84,13 @@ end
 # Method to remove an item from the list
 # input: item name, list
 def remove_item(item, list)
-	p list
 # steps:
 #   Check if the list has the lowercased item name
 #   IF the list has the item name, delete the item along with its quantity value
 	if list.has_key?(item.downcase)
 		list.delete(item)
 		# Print out the updated list hash to the console
-		puts list
+		puts "Here is the updated list: #{list}"
 #   IF the list doesn't have the item name
 	else
 #   	Print a warning to the console that the item doesn't exist
@@ -110,7 +109,7 @@ def change_qty(item, quantity, list)
 		# Update the item name's quantity value to be the new quantity from the input 
 		list[item.downcase] = quantity
 		#    	Print out the updated list hash to the console
-		puts list
+		puts "Here is the updated list: #{list}"
 	#   IF the item isn't in the list
 	else
 		# Print a warning to the console that the item doesn't exist
@@ -130,12 +129,23 @@ def print_list(list)
 	list.each {|item, qty| puts "*  #{item.capitalize}: #{qty}"}
 end
 
-# DRIVER CODE:
-input = "carrots apples"
+# OUR DRIVER CODE:
+# input = "carrots apples"
+# new_list = create_list(input)
+# add_item("juice", 2, new_list)
+# add_item("bananas", new_list)
+# new_list = add_item("Apples", 45, new_list)
+# new_list = remove_item("bananas", new_list)
+# change_qty("carrots", 3, new_list)
+# print_list(new_list)
+
+# DBC DRIVER CODE:
+input = ""
 new_list = create_list(input)
-add_item("juice", 2, new_list)
-add_item("bananas", new_list)
-new_list = add_item("Apples", 45, new_list)
-new_list = remove_item("bananas", new_list)
-change_qty("carrots", 3, new_list)
+add_item("Lemonade", 2, new_list)
+add_item("Tomatoes", 3, new_list)
+add_item("Onions", 1, new_list)
+new_list = add_item("Ice cream", 4, new_list)
+new_list = remove_item("Lemonade", new_list)
+change_qty("Ice cream", 1, new_list)
 print_list(new_list)
