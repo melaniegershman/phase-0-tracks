@@ -56,9 +56,7 @@ def create_list(input)
   # Create a new empty list
   list = {}
   # Iterate through the stored item names and store each one in the list with its value as 0--the default quantity
-  array.map do |x|
-    list[x] = 0
-  end
+  array.map { |x| list[x] = 0 }
   # Print the list to the console
   puts "Here is the updated list: #{list}"
   # output: a new hash with item names and keys and quantity (the default of 0) as values
