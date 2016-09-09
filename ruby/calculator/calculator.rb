@@ -15,3 +15,4 @@ class Calculator
   	x / y
   end
 end
+
