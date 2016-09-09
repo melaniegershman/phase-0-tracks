@@ -24,4 +24,21 @@ describe Calculator do
   it "multiplies two integers" do
     expect(calculator.multiply(2,3)).to eq 6
   end
+
+  it "divides two integers" do
+    expect(calculator.divide(4,2)).to eq 2
+  end
 end
+
+=begin
+# Release 2: 
+We found the following as documentation:
+https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+
+We found http://cheatrags.com/rspec-matchers which shows different
+matchers such as 'be == [expected result]' [where the operator can change] or 'include'.
+Matchers can compare and equate your test blocks.
+
+A helpful resource that we found is: http://betterspecs.org/ which shows clear 
+examples of best practice for rspec files and TDD. 
+=end
