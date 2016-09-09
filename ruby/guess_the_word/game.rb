@@ -10,11 +10,11 @@ Solo Challenge, 6.6: Release 1 - Design a Game
 
 - Take user1’s input and store it +
 
-- Tell user2 that they have x guesses, where x is the length of the word given 
+- Tell user2 that they have x guesses, where x is the length of the word given +
 
-- Print a series of dashes that is equal in length to the secret word (num = word.length)
+- Print a series of dashes that is equal in length to the secret word (num = word.length) +
  
-- Take user2’s input of a letter 
+- Take user2’s input of a letter +
 
 - Iterate over your secret word to see if the letter is included in the secret word
 	If the letter matches, it should replace the “-“ with itself
@@ -31,33 +31,33 @@ Solo Challenge, 6.6: Release 1 - Design a Game
 class WordGame
 	attr_accessor :game_board, :secret_word
 
-	def initialize
+	def initialize(secret_word)
 		@game_board = "" # --> I'm going to need this to have "-" for each letter of the word.
 		@secret_word = ""
 		@guess_count = secret_word.length
-		@is_over = false
 	end
 
 	#Display board
 	def display_board(secret_word)
-		board = "- " * secret_word.length
-		puts board
-		board
-		# puts "Please guess one letter at a time."
+		game_board = "- " * secret_word.length
+		puts game_board
+		game_board
 		# board = board.split(" ")
 	end
 
-	# # Check if letter is included in word
-	# if word.include?(letter)
-	# #find index of matching letter
-	# letter_idx = word.index { |x| x == letter } 
-	# #switch board[index] to == letter
-	# board[letter_idx] = letter
-	# end
+	def check_letter(letter)
+	  	@guess_count += 1
+	  	if @secret_word.include?(letter)
+	  		@game_board.each_char do |letter|
+	  			game_board.gsub(/-/, letter)
+	  		end
+	  	else
+	  		puts "Nope, guess again!"
+	  	end
+  	end
 end
 
 # helper methods
-game = WordGame.new
 
 # Identify players
 def user_greet_1
@@ -87,13 +87,15 @@ def store_word(keeper)
 	secret_word = gets.chomp
 end
 
-# driver code
-puts "Welcome to Guess-The-Word."
-player_one = user_greet_1
-player_two = user_greet_2
-keeper = assign_keeper(player_one, player_two)
-secret_word = store_word(keeper)
-puts "You have #{secret_word.length} guesses:"
-game.display_board(secret_word)
-letter = gets.chomp
+# User Interface
+# game = WordGame.new(secret_word)
+# puts "Welcome to Guess-The-Word."
+# player_one = user_greet_1
+# player_two = user_greet_2
+# keeper = assign_keeper(player_one, player_two)
+# secret_word = store_word(keeper)
+# puts "You have #{secret_word.length} guesses:"
+# game.display_board(secret_word)
+# puts "Please guess one letter at a time."
+# letter = gets.chomp
 
