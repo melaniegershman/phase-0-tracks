@@ -9,11 +9,16 @@ describe WordGame  do
 	end
 
 	it "should check if a letter is in the secret word" do
-		
-		expect(game.check_letter("l")).to be == "--ll-"	
+		expect(game.check_letter("l")).to be == "--ll-"
 	end
 
-	# it "" do
+	it "should check if a letter is not in the secret word" do
+		expect(game.check_letter("z")).to be == "-----"
+	end
+
+	# it "should check if you won" do
+	# 	@game_board == @secret_word
+	# 	expect(game.game_won?).to be true
 	# end
 
 end
