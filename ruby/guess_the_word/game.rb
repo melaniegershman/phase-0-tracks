@@ -46,6 +46,7 @@ class WordGame
 	  	return puts "You already guessed #{letter}! Try another one." if @guessed_char.include?(letter)
 	  	# If user inputs a letter that is in the secret word:
 	  	if @secret_word.include?(letter)
+	  		puts "Good guess!"
 	  		char_index = 0
 	  		secret_word.each_char do |x|
 	  			if x == letter
@@ -61,6 +62,7 @@ class WordGame
 	  	end
 	  @guessed_char << letter	
 	  @guess_count -= 1	
+	  puts "You have #{@guess_count} guess(es) left."
 	  @game_board
   	end
 # 	this isn't working!! 
@@ -112,7 +114,6 @@ while game.guess_count > 0
 	puts "Please guess one letter at a time."
 	letter = gets.chomp
 	game.check_letter(letter)
-	# game.guess_count -= 1
 end
 
 
