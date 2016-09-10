@@ -23,7 +23,7 @@ describe WordGame  do
 
 	it "should decrease your guess count by 1" do
 		expect(game.check_letter("z")).to be == "-----"
-		expect(game.guess_count).to eq 4
+		expect(game.guess_count).to eq 9
 	end
 
 	it "should check if game is over" do
@@ -34,6 +34,11 @@ describe WordGame  do
 	it "should check if game is over" do
 		game.guess_count = 0	
 		expect(game.game_over?).to be true
+	end
+
+	it "should check if game is won" do
+		game.game_board = game.secret_word
+		expect(game.game_won). to be true
 	end
 
 end

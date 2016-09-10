@@ -35,13 +35,13 @@ class WordGame
 	def initialize(secret_word)
 		@game_board = "-" * secret_word.length # --> I'm going to need this to have "-" for each letter of the word.
 		@secret_word = secret_word
-		@guess_count = secret_word.length
+		@guess_count = secret_word.length * 2
 		@game_over = false
 		@guessed_char = []
+		@game_won = false
 	end
 
-	def check_letter(letter)
-		
+	def check_letter(letter)	
 		# If user has already guessed a letter:
 	  	return puts "You already guessed #{letter}! Try another one." if @guessed_char.include?(letter)
 	  	# If user inputs a letter that is in the secret word:
@@ -66,12 +66,20 @@ class WordGame
 	  @game_board
   	end
 
-# 	this isn't working!! 
   	def game_over?
   		if @game_board == @secret_word || @guess_count == 0
   			@game_over = true
   		end
   		@game_over
+  	end
+
+  	def game_won
+  		if @game_board == @secret_word
+  			puts "You win!"
+  			game_won = true
+  		else
+  			puts "Aw man! Better luck next time!"
+  		end
   	end
 end
 
@@ -110,6 +118,5 @@ end
 # 	puts "Please guess one letter at a time."
 # 	letter = gets.chomp
 # 	game.check_letter(letter)
-# 	if game.game_board == game.secret_word
-# 		puts "You win!"
+# 	break if game.game_over?
 # end
