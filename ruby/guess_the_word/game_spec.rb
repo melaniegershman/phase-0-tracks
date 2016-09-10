@@ -26,9 +26,14 @@ describe WordGame  do
 		expect(game.guess_count).to eq 4
 	end
 
-	# it "should check if you won" do
-	# 	@game_board == @secret_word
-	# 	expect(game.game_won?).to be true
-	# end
+	it "should check if game is over" do
+		game.game_board = game.secret_word	
+		expect(game.game_over?).to be true
+	end
+
+	it "should check if game is over" do
+		game.guess_count = 0	
+		expect(game.game_over?).to be true
+	end
 
 end

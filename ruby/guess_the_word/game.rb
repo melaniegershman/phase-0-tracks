@@ -65,18 +65,14 @@ class WordGame
 	  puts "You have #{@guess_count} guess(es) left."
 	  @game_board
   	end
+
 # 	this isn't working!! 
-  	# def game_won?
-  	# 	if @game_board == @secret_word
-  	# 		puts "You win!"
-  	# 		@game_over = true
-  	# 	elsif @guess_count == 0
-  	# 		puts "Sorry, you lost!"
-  	# 		@game_over = true
-  	# 	end
-  	# 	puts @game_board
-  	# 	@game_over
-  	# end
+  	def game_over?
+  		if @game_board == @secret_word || @guess_count == 0
+  			@game_over = true
+  		end
+  		@game_over
+  	end
 end
 
 # helper methods
@@ -97,7 +93,7 @@ def user_greet_2
 	player_two
 end
 
-# User Interface
+# ------ User Interface ------
 
 # puts "Welcome to Guess-The-Word."
 # player_one = user_greet_1
@@ -110,11 +106,10 @@ end
 # game.secret_word
 # puts "#{player_two}, you have #{game.secret_word.length} guesses:"
 # game.game_board
-
 # while game.guess_count > 0
 # 	puts "Please guess one letter at a time."
 # 	letter = gets.chomp
 # 	game.check_letter(letter)
+# 	if game.game_board == game.secret_word
+# 		puts "You win!"
 # end
-
-
