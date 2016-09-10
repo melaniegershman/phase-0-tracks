@@ -30,35 +30,35 @@ Solo Challenge, 6.6: Release 1 - Design a Game
 
 class WordGame
 	attr_accessor :game_board, :secret_word
+	attr_reader :secret_word
 
 	def initialize(secret_word)
-		@game_board = "" # --> I'm going to need this to have "-" for each letter of the word.
-		@secret_word = ""
+		@game_board = "-" * secret_word.length # --> I'm going to need this to have "-" for each letter of the word.
+		@secret_word = secret_word
 		@guess_count = secret_word.length
 	end
 
-	#Display board
-	def display_board(secret_word)
-		game_board = "- " * secret_word.length
-		puts game_board
-		game_board
-		# board = board.split(" ")
-	end
-
 	def check_letter(letter)
-	  	@guess_count += 1
 	  	if @secret_word.include?(letter)
-	  		@game_board.each_char do |letter|
-	  			game_board.gsub(/-/, letter)
+	  		char_index = 0
+	  		secret_word.each_char do |x|
+	  			if x == letter
+	  			game_board[char_index] = x
+	  			end
+	  			char_index += 1
 	  		end
+	  		puts @game_board
 	  	else
 	  		puts "Nope, guess again!"
+	  		puts @game_board
 	  	end
+	  @game_board
   	end
+
 end
 
 # helper methods
-
+# game = WordGame.new(@secret_word)
 # Identify players
 def user_greet_1
 	puts "Player One, what's your name?"
@@ -88,14 +88,18 @@ def store_word(keeper)
 end
 
 # User Interface
-# game = WordGame.new(secret_word)
+
 # puts "Welcome to Guess-The-Word."
 # player_one = user_greet_1
 # player_two = user_greet_2
+# # set word keeper
 # keeper = assign_keeper(player_one, player_two)
-# secret_word = store_word(keeper)
-# puts "You have #{secret_word.length} guesses:"
-# game.display_board(secret_word)
+# # set secret word
+# game.secret_word = store_word(keeper)
+
+# puts "You have #{game.secret_word.length} guesses:"
+# game.game_board
 # puts "Please guess one letter at a time."
 # letter = gets.chomp
+# game.check_letter(letter)
 
