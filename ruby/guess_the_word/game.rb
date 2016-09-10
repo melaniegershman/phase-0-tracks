@@ -96,24 +96,25 @@ def user_greet_2
 	puts "Thank you, #{player_two}."
 	player_two
 end
+
 # User Interface
 
-puts "Welcome to Guess-The-Word."
-player_one = user_greet_1
-player_two = user_greet_2
-#Ask player one for the secret word, and store it.
-puts "#{player_one}, tell me your word."
-secret_word = gets.chomp
-# set secret word
-game = WordGame.new(secret_word)
-game.secret_word
-puts "#{player_two}, you have #{game.secret_word.length} guesses:"
-game.game_board
+# puts "Welcome to Guess-The-Word."
+# player_one = user_greet_1
+# player_two = user_greet_2
+# #Ask player one for the secret word, and store it.
+# puts "#{player_one}, tell me your word."
+# secret_word = gets.chomp
+# # set secret word
+# game = WordGame.new(secret_word)
+# game.secret_word
+# puts "#{player_two}, you have #{game.secret_word.length} guesses:"
+# game.game_board
 
-while game.guess_count > 0
-	puts "Please guess one letter at a time."
-	letter = gets.chomp
-	game.check_letter(letter)
-end
+# while game.guess_count > 0
+# 	puts "Please guess one letter at a time."
+# 	letter = gets.chomp
+# 	game.check_letter(letter)
+# end
 
 
