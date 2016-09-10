@@ -4,9 +4,7 @@ Solo Challenge, 6.6: Release 1 - Design a Game
 
 - Ask users their names 
 
-- Ask which user will be inputing a word 
-
-- Take response and print back: “user1, please give me a word!” 
+- Print: “user1, please give me a word!” 
 
 - Take user1’s input and store it 
 
@@ -16,19 +14,18 @@ Solo Challenge, 6.6: Release 1 - Design a Game
  
 - Take user2’s input of a letter 
 
-- WHILE the guess amount is less than then length of the word
+- WHILE the guess amount is less than the length of the word
 	input: a letter
 	steps: 
 	- check if the letter is in the word
 	- IF the letter is in the word
 	    - print out “nice work!”
-	    - replace it’s equivalent space in the game board with the letter that was guessed
+	    - replace its equivalent space in the game board with the letter that was guessed
 	    - print out the updated game board
 	- IF NOT in the word
 	    - print out “sorry, that wasn’t it!”
 	    - print game board
 	- then:
-	    - subtract 1 from the guess count
 	    - tell the user how many guesses are left 
 	    - store the letter to a collection of letters that have already been guessed
 	    - take another letter as input
@@ -37,7 +34,6 @@ Solo Challenge, 6.6: Release 1 - Design a Game
 - Continue to take user2’s guesses until the user has guessed the word or run out of guesses.
 	If the user wins, print “You guessed it!”
 	Otherwise print "Aw man! Better luck next time!"
-	
 =end
 
 # ------ Game Class ------
@@ -47,7 +43,7 @@ class WordGame
 	attr_reader :secret_word
 
 	def initialize(secret_word)
-		@game_board = "-" * secret_word.length # --> I'm going to need this to have "-" for each letter of the word.
+		@game_board = "-" * secret_word.length 
 		@secret_word = secret_word
 		@guess_count = secret_word.length * 2
 		@game_over = false
@@ -60,7 +56,9 @@ class WordGame
 	  	return puts "You already guessed #{letter}! Try another one." if @guessed_char.include?(letter)
 	  	# If user inputs a letter that is in the secret word:
 	  	if @secret_word.include?(letter)
-	  		puts "\(^o^)/"
+	  		# Friendly guy to cheer player on
+	  		puts "		d(^o^)/"
+	  		# Check every char in the word to see if it matches the guessed letter
 	  		char_index = 0
 	  		secret_word.each_char do |x|
 	  			if x == letter
@@ -74,6 +72,7 @@ class WordGame
 	  		puts "Nope, guess again!"
 	  		puts @game_board
 	  	end
+	  # Add letter to "guessed char" array to ensure the user's repeat guesses don't count against them
 	  @guessed_char << letter	
 	  @guess_count -= 1	
 	  puts "You have #{@guess_count} guess(es) left."
@@ -124,7 +123,7 @@ puts "#{player_one}, tell me your word."
 secret_word = gets.chomp
 # set secret word
 game = WordGame.new(secret_word)
-game.
+game.secret_word
 # "clears" screen so user two can guess letters without cheating
 puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 puts "#{player_two}, you have #{game.guess_count} guesses:"

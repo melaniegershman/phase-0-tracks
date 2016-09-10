@@ -4,7 +4,6 @@ describe WordGame  do
 	let(:game) {WordGame.new("hello")}
 
 	it "should print a game board" do 
-		# game_board = "-" * "hello".length
 		expect(game.game_board).to be == "-----"
 	end
 
