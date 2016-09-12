@@ -30,19 +30,19 @@
 
 
 #Encryptor
-def encrypt(str)
+def encryptor(msg)
 	i = 0
-	while i < str.length
-		if str[i] == "z"
-			str[i] = "a"
-		elsif !"abcdefghijklmnopqrstuvwxyz".include?(str[i])
-			str[i] = str[i]
+	while i < msg.length
+		if msg[i] == "z"
+			msg[i] = "a"
+		elsif !"abcdefghijklmnopqrstuvwxyz".include?(msg[i])
+			msg[i] = msg[i]
 		else
-			str[i] = str[i].next
+			msg[i] = msg[i].next
 		end
 		i += 1
 	end
-	str
+	msg
 end
 
 #DRIVER CODE:
