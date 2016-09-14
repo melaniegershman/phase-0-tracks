@@ -19,7 +19,9 @@ if (colors.length == names.length) {
 	for (i = 0; i < colors.length; i++) {
 		horse[names[i]] = colors[i]
 	}
-	console.log(horse);
+	for(name in horse) {
+    console.log (name + ":", horse[name]);
+	}
 } else {
 	console.log("You don't have enough values to create an object!")
 }
@@ -43,6 +45,10 @@ function Car(color, brand, max_speed) {
 var car = new Car("green", "Toyota Prius", 100);
 car.turn_on();
 car.turn_off();
+// Driver code to confirm instance variables were created
+console.log(car.color);
+console.log(car.brand);
+console.log(car.max_speed);
 var ferrari = new Car("neon yellow", "Ferrari", 180);
 ferrari.turn_on();
 ferrari.turn_off();
