@@ -1,7 +1,7 @@
 # Virus Predictor
 
-# I worked on this challenge [by myself, with: ].
-# We spent [#] hours on this challenge.
+# I worked on this challenge Allain Dollete.
+# We spent 3 hours on this challenge.
 
 # EXPLANATION OF require_relative
 =begin
@@ -65,12 +65,17 @@ end
 # Reflection Section
 =begin
 What are the differences between the two different hash syntaxes shown in the state_data file?
+One hash uses the rocket operator, and the other places a colon at the end of the key rather than at the beginning. Also, the hash in which the key is a state uses a string as a key, but the hash within that uses a symbol as a key. 
 
 What does require_relative do? How is it different from require?
+Require relative is used for code that you write; require will be used for code that someone else wrote. Require relative means you're providing a path to the file relative to it's place in the directory. Require will load a library for reference in your own code. 
 
 What are some ways to iterate through a hash?
+You can iterate through a hash using a loop, or an enumerable
 
 When refactoring virus_effects, what stood out to you about the variables, if anything?
+I noticed that calling instance variables in as parameters was redundant. Given their scope, we could access them without having to pass them in as arguments. 
 
 What concept did you most solidify in this challenge? 
+I think I finally got the hang of using case statements. I've previously had trouble with their syntax and this was a great way to dive deeper into understanding how to write them. 
 =end
