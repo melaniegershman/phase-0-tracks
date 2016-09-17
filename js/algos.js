@@ -4,13 +4,35 @@ Find the index of the largest number
 Use that index to find the longest phrase in the array
 */
 
-var phraseArr = ["long phrase","longest phrase","longer phrase"]
+var phraseArr = ["long phrase","longest phrase","longer phrase","def longest phrase"]
+
 function longestPhrase(arr) {
-	for (var i = 0; i < arr.length; i++) {
-  	return Math.max(...i.length);
-	}
-	// Math.max(...arr)
+
+	var phraseLengthArr;
+
+	//create new array with lengths of each array item
+	phraseLengthArr = arr.map(
+		function(phrase) { 
+			return phrase.length; 
+		}
+	);
+
+	// find the largest number in the length array
+	var max = Math.max(...phraseLengthArr)
+	// find index of largest number in the length array
+	var maxIndex = phraseLengthArr.indexOf(max);
+	// use the index of the largest number in length array to find longest phrase in original input array
+	return arr[maxIndex];
 }
+// another way to find the longest phrase
+// function longestPhrase(arr) {
+// 	var longestStr = '';
+// 	for (var i = 0; i < arr.length; i++) {
+// 		if (arr[i].length > longestStr.length)
+// 			longestStr = arr[i];
+// 	}
+// 	return longestStr;
+// }
 
 console.log(longestPhrase(phraseArr))
 
