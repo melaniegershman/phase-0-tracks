@@ -64,7 +64,25 @@ console.log(keyValMatch(objOne, objTwo))
 
 /* RELEASE 2 - GENERATE RANDOM TEST DATA
 Write a function that takes an integer for length, and builds and returns an array of strings of the given length. 
-So if we ran your function with an argument of 3, we would get an array of 3 random words back (the words don't have to be actual sensical English words -- "nnnnfph" totally counts). 
+- Input: integer
+- Set integer as length of an array
+- Set empty array to print as output
+- While empty array is less than the input array length, push a random word in (the index will be a random number)
+- Output: an array of strings [ex: function(3) => ["blah", "beep", "boop"]]
+
 The words should be of randomly varying length, with a minimum of 1 letter and a maximum of 10 letters. (This involves a new trick, generating a random number, that you'll have to look up, but the solution on how to do so is relatively straightforward.)
 Add driver code that does the following 10 times: generates an array, prints the array, feeds the array to your "longest word" function, and prints the result.
 */
+
+
+function randomWords(n) {
+	var words = ["blah", "this", "that", "allegory", "jack", "green", "sugar", "cat", "puppy", "a", "the", "an", "thing", "as", "if", "do", "don't"];
+	var randomArr = [];
+	while (randomArr.length < n) {
+		var index = Math.floor((Math.random() * words.length) + 1);
+		randomArr.push(words[index]);
+		// n = n + 1;
+	}
+	return randomArr;
+}
+console.log(randomWords(4))
