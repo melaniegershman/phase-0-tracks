@@ -77,7 +77,7 @@ function randomWords(n) {
 	for (var i = 0; i < n; i++) {
 		var alpha = "abcdefghijklmnopqrstuvwxyz";
 		var str = ""
-		for (var j = 0; j < Math.floor((Math.random() * 26)); j++) {
+		for (var j = 0; j < Math.floor((Math.random() * 11) + 1); j++) {
 			str += alpha.charAt(Math.floor(Math.random() * alpha.length));
 		}
 		randomArr.push(str)
@@ -96,5 +96,6 @@ for (i = 0; i <= 10; i++) {
   // store array
   var wordArr = randomWords(number);
   console.log(wordArr);
-  console.log("The longest word is: " + longestPhrase(wordArr));
+  var longestStr = longestPhrase(wordArr);
+  console.log("The longest word is: " + longestStr + " it is " + longestStr.length + " characters long.");
 }
