@@ -73,34 +73,28 @@ Write a function that takes an integer for length, and builds and returns an arr
 
 
 function randomWords(n) {
-	var words = ["blah", "this", "that", "allegory", "jack", "green", "sugar", "cat", "puppy", "a", "the", "an", "thing", "as", "if", "do", "do not", "filter", "photograph", "startup"];
 	var randomArr = [];
-	while (randomArr.length < n) {
-		var index = Math.floor((Math.random() * words.length) + 1);
-		randomArr.push(words[index]);
-		// n = n + 1;
+	for (var i = 0; i < n; i++) {
+		var alpha = "abcdefghijklmnopqrstuvwxyz";
+		var str = ""
+		for (var j = 0; j < Math.floor((Math.random() * 26)); j++) {
+			str += alpha.charAt(Math.floor(Math.random() * alpha.length));
+		}
+		randomArr.push(str)
 	}
 	return randomArr;
 }
 // ========= DRIVER CODE: =========
-// console.log(randomWords(4))
 
 /*
 Add driver code that does the following 10 times: generates an array, prints the array, feeds the array to your "longest word" function, and prints the result.
-
-// 9/19 - 11:15 AM: ERROR:
-Returns /Users/melaniegershman/devbootcamp/phase-0-tracks/js/algos.js:17
-			return phrase.length; 
-			             ^
-
-TypeError: Cannot read property 'length' of undefined
 */
 
 for (i = 0; i <= 10; i++) {
   // random # of words for array
-  var number = (Math.floor(Math.random() * 15) + 1)
+  var number = (Math.floor(Math.random() * 10) + 1)
   // store array
-  // var wordArr = randomWords(number);
-  console.log(randomWords(number));
-  console.log("The longest word is: " + longestPhrase(randomWords(number)));
+  var wordArr = randomWords(number);
+  console.log(wordArr);
+  console.log("The longest word is: " + longestPhrase(wordArr));
 }
