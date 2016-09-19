@@ -1,4 +1,4 @@
-/* RELEASE 0 - FIND THE LONGEST PHRASE
+/* ========= RELEASE 0 - FIND THE LONGEST PHRASE
 Input: take an array
 Find the length of each of the strings inside it
 Store lengths in another array; find the largest number in that array
@@ -35,16 +35,16 @@ function longestPhrase(arr) {
 	return longestStr;
 }
 */
-console.log(longestPhrase(phraseArr))
+// ========= DRIVER CODE: =========
+// console.log(longestPhrase(phraseArr))
 
-/* RELEASE 1 - FIND A KEY-VALUE MATCH
+/* ========= RELEASE 1 - FIND A KEY-VALUE MATCH
 - Input: two data structures
 Iterate to compare keys in each hash
 Each loop compares a kay to another key
 If keys equal and if values are equal, then return true
 Otherwise, return false
 - Output: boolean value
-
 */
 
 function keyValMatch(objOne, objTwo) {
@@ -57,26 +57,23 @@ function keyValMatch(objOne, objTwo) {
 	}
 	return false
 }
+// ========= DRIVER CODE: =========
+// objOne = {cat: "Spot", dog: "Fido", snake: "Slippy", turtle: "turt"}
+// objTwo = {cat: "Fluffy", dog: "Spot", snake: "Mr. Slithers", turtle: "hank"}
+// console.log(keyValMatch(objOne, objTwo))
 
-objOne = {cat: "Spot", dog: "Fido", snake: "Slippy", turtle: "turt"}
-objTwo = {cat: "Fluffy", dog: "Spot", snake: "Mr. Slithers", turtle: "hank"}
-console.log(keyValMatch(objOne, objTwo))
-
-/* RELEASE 2 - GENERATE RANDOM TEST DATA
+/* ========= RELEASE 2 - GENERATE RANDOM TEST DATA
 Write a function that takes an integer for length, and builds and returns an array of strings of the given length. 
 - Input: integer
 - Set integer as length of an array
 - Set empty array to print as output
 - While empty array is less than the input array length, push a random word in (the index will be a random number)
 - Output: an array of strings [ex: function(3) => ["blah", "beep", "boop"]]
-
-The words should be of randomly varying length, with a minimum of 1 letter and a maximum of 10 letters. (This involves a new trick, generating a random number, that you'll have to look up, but the solution on how to do so is relatively straightforward.)
-Add driver code that does the following 10 times: generates an array, prints the array, feeds the array to your "longest word" function, and prints the result.
 */
 
 
 function randomWords(n) {
-	var words = ["blah", "this", "that", "allegory", "jack", "green", "sugar", "cat", "puppy", "a", "the", "an", "thing", "as", "if", "do", "don't"];
+	var words = ["blah", "this", "that", "allegory", "jack", "green", "sugar", "cat", "puppy", "a", "the", "an", "thing", "as", "if", "do", "do not", "filter", "photograph", "startup"];
 	var randomArr = [];
 	while (randomArr.length < n) {
 		var index = Math.floor((Math.random() * words.length) + 1);
@@ -85,4 +82,25 @@ function randomWords(n) {
 	}
 	return randomArr;
 }
-console.log(randomWords(4))
+// ========= DRIVER CODE: =========
+// console.log(randomWords(4))
+
+/*
+Add driver code that does the following 10 times: generates an array, prints the array, feeds the array to your "longest word" function, and prints the result.
+
+// 9/19 - 11:15 AM: ERROR:
+Returns /Users/melaniegershman/devbootcamp/phase-0-tracks/js/algos.js:17
+			return phrase.length; 
+			             ^
+
+TypeError: Cannot read property 'length' of undefined
+*/
+
+for (i = 0; i <= 10; i++) {
+  // random # of words for array
+  var number = (Math.floor(Math.random() * 15) + 1)
+  // store array
+  // var wordArr = randomWords(number);
+  console.log(randomWords(number));
+  console.log("The longest word is: " + longestPhrase(randomWords(number)));
+}
