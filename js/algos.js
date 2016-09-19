@@ -94,6 +94,8 @@ for (i = 0; i <= 10; i++) {
   // random # of words for array
   var number = (Math.floor(Math.random() * 10) + 1)
   // store array
+  console.log("=============================")
+  console.log("The length of the array is " + number) + "."
   var wordArr = randomWords(number);
   console.log(wordArr);
   var longestStr = longestPhrase(wordArr);
