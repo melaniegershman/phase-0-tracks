@@ -1,35 +1,47 @@
+Display the information in one table (either table is fine).
+===== INPUT: 
 SELECT * FROM designers;
-
+===== OUTPUT:
 1|Givenchy|1952|true|3
 2|Chanel|1909|true|3
 3|Maison Margiela|1988|true|3
 4|Guo Pei|1997|true|2
 5|Marques' Almeida|2011|false|1
 
-
+Update an item that meets some condition (you can choose a condition that makes sense).
+===== INPUT: 
 UPDATE designers SET name="Maison Martin Margiela" WHERE id=3;
-SELECT * FROM designers;
+===== OUTPUT:
 1|Givenchy|1952|true|3
 2|Chanel|1909|true|3
 3|Maison Martin Margiela|1988|true|3
 4|Guo Pei|1997|true|2
 5|Marques' Almeida|2011|false|1
 
+Display the information in both tables using one query.
+===== INPUT: 
 SELECT * FROM designers, nationality WHERE designers.country_id = nationality.id;
+===== OUTPUT:
 1|Givenchy|1952|true|3|3|French
 2|Chanel|1909|true|3|3|French
 3|Maison Martin Margiela|1988|true|3|3|French
 4|Guo Pei|1997|true|2|2|Chinese
 5|Marques' Almeida|2011|false|1|1|British
 
+Display a narrower selection of columns (fewer columns than all of them, in other words) from both tables using one query.
+===== INPUT: 
 SELECT designers.name, designers.founded, nationality.country FROM designers JOIN nationality ON designers.country_id = nationality.id;
+===== OUTPUT:
 Givenchy|1952|French
 Chanel|1909|French
 Maison Martin Margiela|1988|French
 Guo Pei|1997|Chinese
 Marques' Almeida|2011|British
 
+Delete an item that meets some condition (you can choose a condition that makes sense).
+===== INPUT: 
 DELETE FROM designers WHERE id=5;
+===== OUTPUT:
 SELECT designers.id, designers.name, designers.founded, nationality.country FROM designers JOIN nationality ON designers.country_id = nationality.id;
 1|Givenchy|1952|French
 2|Chanel|1909|French
