@@ -47,3 +47,36 @@ SELECT designers.id, designers.name, designers.founded, nationality.country FROM
 2|Chanel|1909|French
 3|Maison Martin Margiela|1988|French
 4|Guo Pei|1997|Chinese
+
+Inner join:
+===== INPUT: 
+SELECT designers.id, designers.name, designers.founded, nationality.country
+   ...> FROM designers
+   ...> INNER JOIN nationality
+   ...> ON designers.country_id = nationality.id;
+===== OUTPUT:
+1|Givenchy|1952|French
+2|Chanel|1909|French
+3|Maison Martin Margiela|1988|French
+4|Guo Pei|1997|Chinese
+
+Left join:
+===== INPUT: 
+SELECT designers.id, designers.name, designers.founded, nationality.country
+   ...> FROM designers
+   ...> LEFT JOIN nationality
+   ...> ON designers.country_id = nationality.id;
+===== OUTPUT:
+1|Givenchy|1952|French
+2|Chanel|1909|French
+3|Maison Martin Margiela|1988|French
+4|Guo Pei|1997|Chinese
+
+Right join:
+===== INPUT: 
+SELECT designers.id, designers.name, nationality.country
+   ...> FROM designers
+   ...> RIGHT JOIN nationality
+   ...> ON designers.country_id = nationality.id;
+===== OUTPUT:
+Interestingly, I got an error saying: "Error: RIGHT and FULL OUTER JOINs are not currently supported".
