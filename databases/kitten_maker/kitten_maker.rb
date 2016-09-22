@@ -1,7 +1,11 @@
 # OPERATION KITTEN EXPLOSION!
 
 # talk about Object Relational Mapping (ORM)
-
+=begin
+- How do we take the relational data we've been working with and use it in an object oriented language.
+- We want to use the data as hashes or arrays
+- When we require our gems (a gem is pre-written ruby that another programmer wrote. You 'require' it when you write your program. Ex: rspec, SQLite for)	
+=end
 # require gems
 require 'sqlite3'
 require 'faker'
@@ -32,13 +36,13 @@ def create_kitten(db, name, age)
   db.execute("INSERT INTO kittens (name, age) VALUES (?, ?)", [name, age])
 end
 
-10000.times do
+1.times do
   create_kitten(db, Faker::Name.name, 0)
 end
 
 # explore ORM by retrieving data
-# kittens = db.execute("SELECT * FROM kittens")
-# kittens.each do |kitten|
-#  puts "#{kitten['name']} is #{kitten['age']}"
-# end
+kittens = db.execute("SELECT * FROM kittens")
+kittens.each do |kitten|
+ puts "#{kitten['id']}. #{kitten['name']} is #{kitten['age']} months old."
+end
 
