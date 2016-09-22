@@ -32,3 +32,5 @@ SELECT * FROM users, businesses
 2|Mandy|Kaling|5|Plumbing by Janet|2|1|not a great outfit|5|2
 3|Angela|Jolie|5|Plumbing by Janet|3|5|love that top!|5|3
 
+==> Release 3:
+Connect chefs to the tv shows that they are on, and then connect that to the network. 
