@@ -34,32 +34,38 @@ def new_skill(db)
     end
   #MAKE THIS LOOK NICE:
   skill_list = db.execute("SELECT * FROM skills")
-  puts skill_list
+  p skill_list
 end
 
 def update(update_goal, db)
+  skill = db.execute("SELECT name FROM skills WHERE id=(?)", update_goal)
   puts "What did you do today to help you master #{update_goal}?"
   activity = gets.chomp.capitalize
   puts "How many hours did you spend on: \n'#{activity}'?"
   hours = gets.chomp.to_i
   # this skill_id variable should give me an ID derived from the user input of a skill name, which is then used to interpolate user's input and add it to the activity log table:
-  skill_id = db.execute("SELECT id FROM skills WHERE name=(?)", update_goal)
+  # skill_id = db.execute("SELECT id FROM skills WHERE name=(?)", update_goal)
   # log = {}
-  puts skill_id
+  # puts skill_id
   db.execute("INSERT INTO activity_log (activity,hours,skill_id) VALUES (?, ?, ?)", activity, hours, update_goal)
   # log[activity] = hours
   # the log variable should return a table that displays the activities performed and hours commited to the skill the user is currently updating:
   log = db.execute("SELECT activity, hours FROM activity_log WHERE skill_id =(?)", update_goal)
-  p log
+  # p log
 end
 
 def add_hours(db)
 end
 
-# def print_log(log, db)
-#   # the below '10k - hours' should really be '10k - [sum of all HOURS in your table'
-#   log.each {|activity, hours| puts "You are #{10000 - hours} hours away from completing your goal! "}
-# end
+def print_log(log, db)
+  # the below '10k - hours' should really be '10k - [sum of all HOURS in your table'
+  log.each {|activity| puts "- #{activity[0]}: #{activity[1]} hours "}
+end
+
+def print_skills(db)
+	skill_list = db.execute("SELECT * FROM skills")
+	skill_list.each {|skill| puts "#{skill[0]}. #{skill[1].capitalize}"}
+end
 
 # =========== User Interface
 
@@ -70,8 +76,8 @@ def master_it(db)
     puts "Great!"
     log = new_skill(db)
   elsif new_or_update == "update"
-    puts "What would you like to update? Please choose the number or the name of the skill you are updating."
-    puts db.execute("SELECT * FROM skills")
+    puts "What would you like to update? Please choose the number of the skill you are updating."
+    print_skills(db)
     # PLACEHOLDER: access database and print names of tables in list format
     update_goal = gets.chomp.downcase
     # PLACEHOLDER: at this point your database needs to open? or you need to access your data table based on the input
@@ -80,7 +86,8 @@ def master_it(db)
     puts "What are you waiting for? You've got a skill to improve!"
     # NOTE! error message pops up bc this doesn't return anything to the following 'print_log' method. this should return a 'log' consisting of all the skills in progress!
   end
-  # print_log(log, db)
+  print_log(log, db)
+  # add_hours(db)
   puts "Thanks for using MasterIt. See you next time!"
 end
 
