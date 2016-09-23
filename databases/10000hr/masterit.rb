@@ -2,6 +2,25 @@ require 'sqlite3'
 
 db = SQLite3::Database.new("10000hr.db")
 
+create_activity_table = <<-SQL
+	CREATE TABLE IF NOT EXISTS activity_log(
+    	id INTEGER PRIMARY KEY,
+    	activity VARCHAR(255),
+    	hours INTEGER,
+    	goal_id INTEGER
+    );
+SQL
+
+create_skills_table = <<-SQL
+    CREATE TABLE IF NOT EXISTS skills(
+    	id INTEGER PRIMARY KEY,
+    	name VARCHAR(255)
+    );
+SQL
+
+db.execute(create_activity_table)
+db.execute(create_skills_table)
+
 def update(update_goal)
 	log = {}
 	puts "What did you do today to help you master #{update_goal}?"
@@ -39,6 +58,7 @@ def master_it
 		log = update(update_goal)
 	else 
 		puts "What are you waiting for? You've got a skill to improve!"
+		break
 	end
 	print_log(log)
 	puts "Thanks for using MasterIt. See you next time!"
