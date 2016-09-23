@@ -7,7 +7,7 @@ create_activity_table = <<-SQL
     	id INTEGER PRIMARY KEY,
     	activity VARCHAR(255),
     	hours INTEGER,
-    	goal_id INTEGER
+    	skill_id INTEGER
     );
 SQL
 
@@ -22,16 +22,32 @@ db.execute(create_activity_table)
 db.execute(create_skills_table)
 
 def update(update_goal)
-	log = {}
+	# this skill_id variable should give me an ID derived from the user input of a skill name, which is then used to interpolate user's input and add it to the activity log table:
+	skill_id = db.execute("SELECT skills.id FROM skills WHERE activity_log.goal_id = skills.id")
+	# log = {}
 	puts "What did you do today to help you master #{update_goal}?"
 	activity = gets.chomp.capitalize
 	puts "How many hours did you spend on: \n - '#{activity}'?"
 	hours = gets.chomp.to_i
-	log[activity] = hours
-	log
+	db.execute("INSERT INTO activity_log (activity, hours, goal_id) VALUES (#{activity}, #{hours}, #{skill_id}")
+	# log[activity] = hours
+	# the log variable should return a table that displays the activities performed and hours commited to the skill the user is currently updating:
+	log = db.execute("SELECT activity_log.activity, activity_log.hours WHERE activity_log.goal_id = skills.id")
 end
 
 def new_skill
+	puts "What is the skill you would like to master?"
+	skill_name = gets.chomp.downcase
+	db.execute("INSERT INTO skills (name) VALUES (#{skill_name})")
+	puts "Have you done anything today to master your skill? (yes/no)"
+		input = gets.chomp.downcase
+		if input == "yes"
+			puts "What did you do today to help you master #{skill_name}?"
+			update_goal = gets.chomp.downcase
+			update(update_goal)
+		else
+			puts "Thanks for adding your new skill. Get to work!"
+		end
 end
 
 def add_hours
@@ -58,7 +74,7 @@ def master_it
 		log = update(update_goal)
 	else 
 		puts "What are you waiting for? You've got a skill to improve!"
-		break
+		# NOTE! error message pops up bc this doesn't return anything to the follow 'print_log' method. this should return a 'log' consisting of all the skills in progress!
 	end
 	print_log(log)
 	puts "Thanks for using MasterIt. See you next time!"
