@@ -1,3 +1,7 @@
+require 'sqlite3'
+
+db = SQLite3::Database.new("10000hr.db")
+
 def update(update_goal)
 	log = {}
 	puts "What did you do today to help you master #{update_goal}?"
@@ -8,7 +12,7 @@ def update(update_goal)
 	log
 end
 
-def new_goal
+def new_skill
 end
 
 def add_hours
@@ -26,7 +30,7 @@ def master_it
 	new_or_update = gets.chomp.downcase
 	if new_or_update == "new"
 		puts "Making a new goal!"
-		log = new_goal
+		log = new_skill
 	elsif new_or_update == "update"
 		puts "What would you like to update?"
 		# PLACEHOLDER: access database and print names of tables in list format
