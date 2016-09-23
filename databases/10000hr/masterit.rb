@@ -1,7 +1,18 @@
-def update
+def update(update_goal)
+	log = {}
+	puts "What did you do today to help you master #{update_goal}?"
+	activity = gets.chomp.capitalize
+	puts "How many hours did you spend on: \n - '#{activity}'?"
+	hours = gets.chomp.to_i
+	log[activity] = hours
+	log.each {|activity, hours| puts "You are #{10000 - hours} hours away from completing your goal! "}
+	log
 end
 
 def new_goal
+end
+
+def add_hours
 end
 
 # =========== User Interface
@@ -14,7 +25,10 @@ def master_it
 		new_goal
 	elsif new_or_update == "update"
 		puts "What would you like to update?"
-		update
+		# access database and print names of tables in list format
+		update_goal = gets.chomp.downcase
+		#at this point your database needs to open? or you need to access your data table based on the input
+		update(update_goal)
 	else 
 		puts "What are you waiting for? You've got a skill to improve!"
 	end
