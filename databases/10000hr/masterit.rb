@@ -35,8 +35,8 @@ def new_skill(db)
 end
 
 def update(update_goal, db)
-  # skill = db.execute("SELECT name FROM skills WHERE id=(?)", update_goal)
-  puts "What did you do today to help you master #{update_goal}?"
+  skill = db.execute("SELECT name FROM skills WHERE id=(?)", update_goal)
+  puts "What did you do today to help you master #{skill[0][0]}?"
   activity = gets.chomp.capitalize
   puts "How many hours did you spend on: \n'#{activity}'?"
   hours = gets.chomp.to_f
@@ -49,12 +49,13 @@ end
 
 def time_remaining(update_goal, db)
 # the below '10k - hours' should really be '10k - [sum of all HOURS in your table'
+  skill = db.execute("SELECT name FROM skills WHERE id=(?)", update_goal)
   hours = db.execute("SELECT hours FROM activity_log WHERE skill_id =(?)", update_goal)
   hours = hours.flatten
   hours_sum = hours.reduce(:+)
   time_remaining = 10000 - hours_sum
   percent_left = (hours_sum/10000) * 100
-  puts "You have completed #{percent_left} % of your skill, and you have #{time_remaining.to_f} hours left until you have mastered #{update_goal}."
+  puts "You have completed #{percent_left} % of your skill, and you have #{time_remaining.to_f} hours left until you have mastered #{skill[0][0]}."
 end
 
 def print_log(log, db)
@@ -77,7 +78,7 @@ def master_it(db)
     puts "Great!"
     log = new_skill(db)
   elsif new_or_update == "update"
-    puts "What would you like to update?"
+    puts "Please select the number of the skill you would like to update:"
     print_skills(db)
     update_goal = gets.chomp.downcase
     log = update(update_goal, db)
