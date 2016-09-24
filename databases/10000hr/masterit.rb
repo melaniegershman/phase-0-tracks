@@ -29,12 +29,9 @@ def new_skill(db)
     input = gets.chomp.downcase
     if input == "yes"
       update(skill_name, db)
-    else
+    elsif input == "no"
       puts "Thanks for adding your new skill. Get to work!"
     end
-  #MAKE THIS LOOK NICE:
-  skill_list = db.execute("SELECT * FROM skills")
-  p skill_list
 end
 
 def update(update_goal, db)
@@ -46,19 +43,18 @@ def update(update_goal, db)
   # this skill_id variable should give me an ID derived from the user input of a skill name, which is then used to interpolate user's input and add it to the activity log table:
   # skill_id = db.execute("SELECT id FROM skills WHERE name=(?)", update_goal)
   # log = {}
-  # puts skill_id
   db.execute("INSERT INTO activity_log (activity,hours,skill_id) VALUES (?, ?, ?)", activity, hours, update_goal)
   # log[activity] = hours
   # the log variable should return a table that displays the activities performed and hours commited to the skill the user is currently updating:
   log = db.execute("SELECT activity, hours FROM activity_log WHERE skill_id =(?)", update_goal)
-  # p log
 end
 
 def add_hours(db)
+# the below '10k - hours' should really be '10k - [sum of all HOURS in your table'
 end
 
 def print_log(log, db)
-  # the below '10k - hours' should really be '10k - [sum of all HOURS in your table'
+  puts "You have taken the following steps toward mastering this skill:"
   log.each {|activity| puts "- #{activity[0]}: #{activity[1]} hours "}
 end
 
@@ -70,24 +66,21 @@ end
 # =========== User Interface
 
 def master_it(db)
-  puts "Hello! \n Malcolm Gladwell once wrote that it takes 10,000 hours to master a skill. I'm here to help you keep track! \n Type 'update' if you'd like to log hours to a previous a skill in progress, and type 'new' if you'd like to begin logging a new skill."
+  puts "Hello! \nMalcolm Gladwell once wrote that it takes 10,000 hours to master a skill. I'm here to help you keep track! \nType 'update' if you'd like to log hours to a previous a skill in progress, and type 'new' if you'd like to begin logging a new skill."
   new_or_update = gets.chomp.downcase
   if new_or_update == "new"
     puts "Great!"
     log = new_skill(db)
   elsif new_or_update == "update"
-    puts "What would you like to update? Please choose the number of the skill you are updating."
+    puts "What would you like to update?"
     print_skills(db)
-    # PLACEHOLDER: access database and print names of tables in list format
     update_goal = gets.chomp.downcase
-    # PLACEHOLDER: at this point your database needs to open? or you need to access your data table based on the input
     log = update(update_goal, db)
+    print_log(log, db)
   else 
     puts "What are you waiting for? You've got a skill to improve!"
-    # NOTE! error message pops up bc this doesn't return anything to the following 'print_log' method. this should return a 'log' consisting of all the skills in progress!
   end
-  print_log(log, db)
-  # add_hours(db)
+  # add_hours(db) (this might need to go into the conditional statement above!)
   puts "Thanks for using MasterIt. See you next time!"
 end
 
