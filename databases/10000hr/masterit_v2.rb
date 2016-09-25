@@ -87,8 +87,8 @@ end
 def print_activity_log(log, db)
   system "clear"
   puts "You have taken the following steps toward mastering this skill:\n\n"
-  puts "DATE          -          ACTIVITY COMPLETED          -          TIME SPENT"
-  log.each {|activity| puts "#{activity[2]}          |x| #{activity[0]}:          #{activity[1].to_f} hours "}
+  puts "DATE | ACTIVITY COMPLETED | TIME SPENT"
+  log.each {|activity| puts "#{activity[2]} |x| #{activity[0]}: #{activity[1].to_f} hours"}
 end
 
 def print_skills(db)
@@ -124,10 +124,18 @@ until user_input == "no"
 
   puts "Please enter today's date in the following format: mm-dd-yyyy:"
   skill[3] = gets.chomp
+    until skill[3].length == 10
+      puts "Please enter today's date in the correct format: mm-dd-yyyy:"
+      skill[3] = gets.chomp
+    end
   puts "What did you do to improve #{skill[0]}?"
   skill[1] = gets.chomp
   puts "How many HOURS did you spend on '#{skill[1]}'? (Decimals are okay!)"
   skill[2] = gets.chomp
+    if !skill[2].include?("1234567890")
+      puts "Please enter a valid number."
+      skill[2] = gets.chomp
+    end
   activity_log = skill_handler(db, skill)
   print_activity_log(activity_log, db)
   time_remaining(skill[0], db)
