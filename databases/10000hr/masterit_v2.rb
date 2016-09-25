@@ -35,6 +35,22 @@ end
 def skill_name_to_id(db, skill_name)
   db.execute("SELECT id FROM skills WHERE name=(?)", skill_name)
 end
+# ----------- Update activity log and skill tables
+def skill_handler(db, skill)
+# ----------- Skill is passed in as an array in UI and updated per these variables:
+  skill_name = skill[0]
+  activity_name = skill[1]
+  hours = skill[2]
+  all_skills = db.execute("SELECT name FROM skills").flatten
+# ----------- Create new skill if not in db
+  if !all_skills.include?(skill_name)
+    db.execute("INSERT INTO skills (name) VALUES (?)", skill_name)
+  end
+  skill_id = skill_name_to_id(db, skill_name)
+# ----------- Create activity
+  db.execute("INSERT INTO activity_log (activity,hours,skill_id) VALUES (?, ?, ?)", activity_name, hours, skill_id)
+  db.execute("SELECT activity, hours FROM activity_log WHERE skill_id =(?)", skill_id)
+end
 
 def time_remaining(skill_name, db)
   skill_id = skill_name_to_id(db, skill_name)
