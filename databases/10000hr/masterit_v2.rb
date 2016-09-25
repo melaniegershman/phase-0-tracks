@@ -81,8 +81,9 @@ def time_remaining(skill_name, db)
 end
 
 def print_activity_log(log, db)
-  puts "You have taken the following steps toward mastering this skill:"
-  log.each {|activity| puts "- #{activity[0]}: #{activity[1].to_f} hours "}
+  system "clear"
+  puts "You have taken the following steps toward mastering this skill:\n\n"
+  log.each {|activity| puts "|x| #{activity[0]}: #{activity[1].to_f} hours "}
 end
 
 def print_skills(db)
@@ -91,10 +92,11 @@ def print_skills(db)
 end
 
 # =========== User Interface
+system "clear"
 puts "Hello! \nMalcolm Gladwell once wrote that it takes 10,000 hours to master a skill. MasterIt is here to help you keep track! \n\nHit ENTER to start."
 user_input = gets.chomp
 until user_input == "no"
-  puts "Enter the skill you have improved:"
+  puts "Select a skill from the below list, or enter a new skill you have improved:"
   print_skills(db)
   skill = []
   skill_input = gets.chomp
@@ -103,9 +105,9 @@ until user_input == "no"
   skill[0] = skill_id_to_name(db, skill_input.to_i)
   skill[0] = skill_input if skill[0] == nil
 
-  puts "What did you do to improve #{skill[0]}? (Decimals are okay!)"
+  puts "What did you do to improve #{skill[0]}?"
   skill[1] = gets.chomp
-  puts "How many HOURS did you spend on '#{skill[1]}'?"
+  puts "How many HOURS did you spend on '#{skill[1]}'? (Decimals are okay!)"
   skill[2] = gets.chomp
   activity_log = skill_handler(db, skill)
   print_activity_log(activity_log, db)
