@@ -8,6 +8,7 @@ create_activity_table = <<-SQL
       id INTEGER PRIMARY KEY,
       activity VARCHAR(255),
       hours INTEGER,
+      day INTEGER,
       skill_id INTEGER,
       FOREIGN KEY (skill_id) REFERENCES skills(id)
     );
@@ -41,6 +42,7 @@ def skill_handler(db, skill)
   skill_name = skill[0]
   activity_name = skill[1]
   hours = skill[2]
+  day = skill[3]
   all_skills = db.execute("SELECT name FROM skills").flatten
 # ----------- Create new skill if not in db
   if !all_skills.include?(skill_name)
@@ -48,8 +50,8 @@ def skill_handler(db, skill)
   end
   skill_id = skill_name_to_id(db, skill_name)
 # ----------- Create activity
-  db.execute("INSERT INTO activity_log (activity,hours,skill_id) VALUES (?, ?, ?)", activity_name, hours, skill_id)
-  db.execute("SELECT activity, hours FROM activity_log WHERE skill_id =(?)", skill_id)
+  db.execute("INSERT INTO activity_log (activity, hours, skill_id, day) VALUES (?, ?, ?, ?)", activity_name, hours, skill_id, day)
+  db.execute("SELECT activity, hours, day FROM activity_log WHERE skill_id =(?)", skill_id)
 end
 
 def time_remaining(skill_name, db)
@@ -58,11 +60,13 @@ def time_remaining(skill_name, db)
   hours_sum = hours.reduce(:+).to_f
   time_remaining = 10000 - hours_sum
   percent_completed = ((hours_sum/10000) * 100).round(2)
-  # FIGURE OUT HOW TO ROUND PERCENTAGE!!!!!!!
+
   flag = 0
 
   if flag == 0
-    if percent_completed == 100
+    if percent_completed > 100
+      puts "Wow, you're going above and beyond! You have completed #{hours_sum} hours in #{skill_name}."
+    elsif percent_completed == 100
       puts "You did it! You're a master of #{skill_name}!"
       flag = 1
     elsif percent_completed >= 50
@@ -83,12 +87,25 @@ end
 def print_activity_log(log, db)
   system "clear"
   puts "You have taken the following steps toward mastering this skill:\n\n"
-  log.each {|activity| puts "|x| #{activity[0]}: #{activity[1].to_f} hours "}
+  puts "DATE | ACTIVITY COMPLETED | TIME SPENT"
+  log.each {|activity| puts "#{activity[2]} |x| #{activity[0]}: #{activity[1].to_f} hours"}
 end
 
 def print_skills(db)
   skill_list = db.execute("SELECT * FROM skills")
-  skill_list.each {|skill| puts "#{skill[0]}. #{skill[1].capitalize}"}
+  activity_list = db.execute ("SELECT skills.name, activity_log.hours FROM activity_log JOIN skills ON activity_log.skill_id = skills.id")
+
+  skill_list.each do |skill|
+    skill_name = skill[1]
+    skill_id = skill[0]
+    total_hours = 0
+    activity_list.each do |activity|
+      if skill_name == activity[0]
+        total_hours += activity[1]
+      end
+    end
+    puts "#{skill_id}. #{skill_name.capitalize} | Total hours: #{total_hours}"
+  end
 end
 
 # =========== User Interface
@@ -105,10 +122,20 @@ until user_input == "no"
   skill[0] = skill_id_to_name(db, skill_input.to_i)
   skill[0] = skill_input if skill[0] == nil
 
+  puts "Please enter today's date in the following format: mm-dd-yyyy:"
+  skill[3] = gets.chomp
+    until skill[3].length == 10
+      puts "Please enter today's date in the correct format: mm-dd-yyyy:"
+      skill[3] = gets.chomp
+    end
   puts "What did you do to improve #{skill[0]}?"
   skill[1] = gets.chomp
   puts "How many HOURS did you spend on '#{skill[1]}'? (Decimals are okay!)"
   skill[2] = gets.chomp
+    if !skill[2].include?("1234567890")
+      puts "Please enter a valid number."
+      skill[2] = gets.chomp
+    end
   activity_log = skill_handler(db, skill)
   print_activity_log(activity_log, db)
   time_remaining(skill[0], db)
