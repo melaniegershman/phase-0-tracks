@@ -7,7 +7,8 @@ create_activity_table = <<-SQL
       id INTEGER PRIMARY KEY,
       activity VARCHAR(255),
       hours INTEGER,
-      skill_id INTEGER
+      skill_id INTEGER,
+      FOREIGN KEY (skill_id) REFERENCES skills(id)
     );
 SQL
 
@@ -21,36 +22,32 @@ SQL
 db.execute(create_activity_table)
 db.execute(create_skills_table)
 
-def new_skill(db)
+def update_skill(db, skill)
   puts "What is the skill you would like to master?"
   skill_name = gets.chomp.downcase
-  db.execute("INSERT INTO skills (name) VALUES (?)", [skill_name])
-  puts "Have you done anything today to master your skill? (yes/no)"
-    input = gets.chomp.downcase
-    if input == "yes"
-      update(skill_name, db)
-    elsif input == "no"
-      puts "Thanks for adding your new skill. Get to work!"
-    end
+  db.execute("INSERT INTO skills (name) VALUES (?)", skill_name)
+
+  p update(skill_name, db)
 end
 
-def update(update_goal, db)
-  skill = db.execute("SELECT name FROM skills WHERE id=(?)", update_goal)
-  puts "What did you do today to help you master #{skill[0][0]}?"
+def update(skill_name, db)
+  # skill = db.execute("SELECT name FROM skills WHERE id=(?)", skill_name)
+  # puts "What did you do today to help you master #{skill[0]}?"
+  puts "What did you do today to help you master #{skill_name}?"
   activity = gets.chomp.capitalize
   puts "How many hours did you spend on: \n'#{activity}'?"
   hours = gets.chomp.to_f
   # this skill_id variable should give me an ID derived from the user input of a skill name, which is then used to interpolate user's input and add it to the activity log table:
-  skill_id = db.execute("SELECT id FROM skills WHERE name=(?)", update_goal)
-  db.execute("INSERT INTO activity_log (activity,hours,skill_id) VALUES (?, ?, ?)", activity, hours, update_goal)
+  skill_id = db.execute("SELECT id FROM skills WHERE name=(?)", skill_name)
+  db.execute("INSERT INTO activity_log (activity,hours,skill_id) VALUES (?, ?, ?)", activity, hours, skill_id)
   # the log variable should return a table that displays the activities performed and hours commited to the skill the user is currently updating:
-  log = db.execute("SELECT activity, hours FROM activity_log WHERE skill_id =(?)", update_goal)
+  db.execute("SELECT activity, hours FROM activity_log WHERE skill_id =(?)", skill_id)
 end
 
-def time_remaining(update_goal, db)
+def time_remaining(skill_name, db)
 # the below '10k - hours' should really be '10k - [sum of all HOURS in your table'
-  skill = db.execute("SELECT name FROM skills WHERE id=(?)", update_goal)
-  hours = db.execute("SELECT hours FROM activity_log WHERE skill_id =(?)", update_goal)
+  skill = db.execute("SELECT name FROM skills WHERE id=(?)", skill_name)
+  hours = db.execute("SELECT hours FROM activity_log WHERE skill_id =(?)", skill_name)
   hours = hours.flatten
   hours_sum = hours.reduce(:+)
   time_remaining = 10000 - hours_sum
@@ -58,7 +55,7 @@ def time_remaining(update_goal, db)
   puts "You have completed #{percent_left} % of your skill, and you have #{time_remaining.to_f} hours left until you have mastered #{skill[0][0]}."
 end
 
-def print_log(log, db)
+def print_activity_log(log, db)
   puts "You have taken the following steps toward mastering this skill:"
   log.each {|activity| puts "- #{activity[0]}: #{activity[1].to_f} hours "}
 end
@@ -77,13 +74,15 @@ def master_it(db)
   if new_or_update == "new"
     puts "Great!"
     log = new_skill(db)
+    print_log(log, db)
+    time_remaining(skill_name, db)
   elsif new_or_update == "update"
     puts "Please select the number of the skill you would like to update:"
     print_skills(db)
-    update_goal = gets.chomp.downcase
-    log = update(update_goal, db)
+    skill_name = gets.chomp.downcase
+    log = update(skill_name, db)
     print_log(log, db)
-    time_remaining(update_goal, db)
+    time_remaining(skill_name, db)
   else 
     puts "What are you waiting for? You've got a skill to improve!"
   end
