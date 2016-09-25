@@ -103,7 +103,7 @@ until user_input == "no"
   skill[0] = skill_id_to_name(db, skill_input.to_i)
   skill[0] = skill_input if skill[0] == nil
 
-  puts "What did you do to improve #{skill[0]}?"
+  puts "What did you do to improve #{skill[0]}? (Decimals are okay!)"
   skill[1] = gets.chomp
   puts "How many HOURS did you spend on '#{skill[1]}'?"
   skill[2] = gets.chomp
