@@ -58,11 +58,13 @@ def time_remaining(skill_name, db)
   hours_sum = hours.reduce(:+).to_f
   time_remaining = 10000 - hours_sum
   percent_completed = ((hours_sum/10000) * 100).round(2)
-  # FIGURE OUT HOW TO ROUND PERCENTAGE!!!!!!!
+
   flag = 0
 
   if flag == 0
-    if percent_completed == 100
+    if percent_completed > 100
+      puts "Wow, you're going above and beyond! You have completed #{percent_completed}\% of your skill, and you have completed #{hours_sum} hours in #{skill_name}."
+    elsif percent_completed == 100
       puts "You did it! You're a master of #{skill_name}!"
       flag = 1
     elsif percent_completed >= 50
@@ -88,7 +90,26 @@ end
 
 def print_skills(db)
   skill_list = db.execute("SELECT * FROM skills")
-  skill_list.each {|skill| puts "#{skill[0]}. #{skill[1].capitalize}"}
+
+  # skill_list.each {|skill| puts "#{skill[0]}. #{skill[1].capitalize}"}
+  #----- testing below!
+  activity_list = db.execute ("SELECT skills.name, activity_log.hours FROM activity_log JOIN skills ON activity_log.skill_id = skills.id")
+
+  skill_list.each do |skill|
+    skill_name = skill[1]
+    skill_id = skill[0]
+    total_hours = 0
+    activity_list.each do |activity|
+      if skill_name == activity[0]
+        total_hours += activity[1]
+      end
+    end
+    puts "#{skill_id}. #{skill_name.capitalize} | Total hours: #{total_hours}"
+  end
+
+  # skill_list = db.execute("SELECT skills.id, skills.name FROM activity_log JOIN skills ON activity_log.skill_id = skills.id")
+  # skill_list.each {|skill| puts "#{skill[0]}. #{skill[1].capitalize} | Total hours: #{hours_completed}"}
+  # p skill_list
 end
 
 # =========== User Interface
