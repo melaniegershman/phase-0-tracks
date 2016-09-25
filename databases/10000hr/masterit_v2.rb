@@ -57,7 +57,7 @@ def time_remaining(skill_name, db)
   hours = db.execute("SELECT hours FROM activity_log WHERE skill_id =(?)", skill_id).flatten
   hours_sum = hours.reduce(:+).to_f
   time_remaining = 10000 - hours_sum
-  percent_completed = (hours_sum/10000) * 100
+  percent_completed = ((hours_sum/10000) * 100).round(2)
   # FIGURE OUT HOW TO ROUND PERCENTAGE!!!!!!!
   flag = 0
 
@@ -69,7 +69,7 @@ def time_remaining(skill_name, db)
       puts "Wow, you're over halfway there! You have completed #{percent_completed}\% of your skill, and you have #{time_remaining.to_f} hours left until you have mastered #{skill_name}."
       flag = 1
     elsif percent_completed >= 25
-      puts "Nice work, you have completed #{percent_completed}\% of your skill, and you have #{time_remaining.to_f} hours left until you have mastered #{skill_name}."
+      puts "Great job, you have completed #{percent_completed}\% of your skill, and you have #{time_remaining.to_f} hours left until you have mastered #{skill_name}."
       flag = 1
     elsif percent_completed >= 1
       puts "Nice work, you have completed #{percent_completed}\% of your skill, and you have #{time_remaining.to_f} hours left until you have mastered #{skill_name}."
