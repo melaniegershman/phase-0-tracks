@@ -22,3 +22,16 @@ SQL
 
 db.execute(create_skills_table)
 db.execute(create_activity_table)
+
+# =========== Helper Methods
+# ----------- Convert skill id to name; skill name to id
+def skill_id_to_name(db, skill_id)
+  skill_name = db.execute("SELECT name FROM skills WHERE id=(?)", skill_id)
+  if skill_name.length > 0
+    skill_name[0][0]
+  end
+end
+
+def skill_name_to_id(db, skill_name)
+  db.execute("SELECT id FROM skills WHERE name=(?)", skill_name)
+end
