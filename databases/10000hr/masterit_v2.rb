@@ -131,11 +131,13 @@ until user_input == "no"
   puts "What did you do to improve #{skill[0]}?"
   skill[1] = gets.chomp
   puts "How many HOURS did you spend on '#{skill[1]}'? (Decimals are okay!)"
-  skill[2] = gets.chomp
-    if !skill[2].include?("1234567890")
+  skill[2] = gets.chomp.to_f
+    until skill[2] > 0
       puts "Please enter a valid number."
-      skill[2] = gets.chomp
+      skill[2] = gets.chomp.to_f
     end
+  puts "Calculating progress..."
+  sleep 1.5  
   activity_log = skill_handler(db, skill)
   print_activity_log(activity_log, db)
   time_remaining(skill[0], db)
