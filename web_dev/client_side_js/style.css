@@ -1,6 +1,11 @@
 body {
 	font-family: Futura;
 	text-align: center;
+	position: relative;
+}
+
+img {
+	text-align: center;
 }
 
 h1 {
@@ -10,6 +15,8 @@ h1 {
 
 li {
 	list-style-type: none;
+	text-align: center;
+
 }
 
 footer {
