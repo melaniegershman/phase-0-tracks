@@ -3,6 +3,11 @@ body {
 	text-align: center;
 }
 
+h1 {
+	background-color: pink;
+	padding: 20px;
+}
+
 li {
 	list-style-type: none;
 }
