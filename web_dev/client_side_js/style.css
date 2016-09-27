@@ -1,0 +1,22 @@
+body {
+	font-family: Futura;
+	text-align: center;
+}
+
+li {
+	list-style-type: none;
+}
+
+footer {
+	padding-top: 200px;
+	font-size: 8px;
+}
+
+a {
+	text-decoration: none;
+	color: pink;
+}
+
+a:hover {
+	color: blue;
+}
