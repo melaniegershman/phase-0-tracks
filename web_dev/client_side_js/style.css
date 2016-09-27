@@ -1,0 +1,32 @@
+body {
+	font-family: Futura;
+	text-align: center;
+}
+
+h1 {
+	background-color: pink;
+	padding: 20px;
+}
+
+li {
+	list-style-type: none;
+}
+
+footer {
+	padding-top: 200px;
+	font-size: 8px;
+}
+
+a {
+	text-decoration: none;
+	color: pink;
+}
+
+a:hover {
+	color: blue;
+}
+
+#diamond {
+	height: 100px;
+	width: 100px;
+}
