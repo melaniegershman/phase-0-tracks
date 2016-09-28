@@ -1,0 +1,39 @@
+body {
+	font-family: 'Rokkitt', serif;
+}
+
+
+main p {
+	line-height: 0.2;
+}
+
+footer {
+	text-align: center;
+	padding-top: 300px;
+	font-size: 10px;
+}
+
+footer p {
+	max-width: 100%;
+	background-color: lightgrey;
+	padding: 10px;
+}
+
+#hint {
+	text-align: center;
+
+}
+
+#poem {
+	text-align: center;
+}
+
+#beard {
+	position: relative;
+	padding-right: 500px;
+}
+
+#ground {
+	position: relative;
+	padding-left: 200px;
+}
