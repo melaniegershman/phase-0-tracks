@@ -59,4 +59,11 @@ get '/contact/:person/:contact' do
     "#{person} lives at #{contact}."
 end
 # 2. A /great_job route that can take a person's name as a query param.
+get '/great_job' do
+  if params[:name]
+    "Good job, #{params[:name]}!"
+  else
+    "Good job!"
+  end
+end
 
