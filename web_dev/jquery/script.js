@@ -2,7 +2,7 @@ $(function(){
     $("#poem").hover(function(){
         $("#beard").animate({
             left: '700px'
-        });
+        }, slow);
     });
 });
 
