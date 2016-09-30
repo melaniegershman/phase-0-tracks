@@ -25,3 +25,7 @@ post '/students' do
 end
 
 # add static resources
+
+get '/campuses' do
+	erb :campuses
+end
