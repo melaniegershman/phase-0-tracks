@@ -27,11 +27,6 @@ end
 # add static resources
 
 get '/campuses' do
-	@students = db.execute("SELECT * FROM students")
-	@campuses = []
-	@students.each do |student|
-		@campuses.push(student['campus'])
-	end
-	@campuses = @campuses.uniq 
+	@campuses = db.execute("SELECT DISTINCT campus FROM students")
 	erb :campuses
 end
