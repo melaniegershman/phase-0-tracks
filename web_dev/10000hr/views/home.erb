@@ -1,0 +1,15 @@
+<html>
+<head>
+  <title>MasterIt</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>MasterIt</h1>
+  <h2>Malcolm Gladwell once wrote that it takes 10,000 hours to master a skill. MasterIt is here to help you keep track!</h2>
+  <ul>
+    <% @new_students.each do |student| %>
+      <li><%= student['name'] %>, <%= student['age'] %></li>
+    <% end %>
+  </ul>
+</body>
+</html>
