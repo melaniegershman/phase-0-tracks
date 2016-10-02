@@ -1,0 +1,41 @@
+body {
+	background-color: #ECEEF0;
+	font-family: Helvetica, sans-serif;
+}
+
+li {
+	list-style-type: none;
+}
+
+form {
+		padding-right: 60px;
+	padding-left: 60px;
+}
+
+h1 {
+	text-align: center;
+	color: #01A862;
+}
+
+h2 {
+	padding-bottom: 50px;
+	color: #2D2E33;
+	padding-right: 60px;
+	padding-left: 60px;
+}
+
+#skills {
+	text-align: center;
+	background-color: #4FB1F7;
+	border-color: 16px solid #A8D6F7;
+	border-radius: 15px;
+	height: 400px;
+	width: 550px;
+	padding-right: 60px;
+	padding-left: 60px;
+}
+
+#skills li {
+	padding: 40px;
+	color: #2D2E33;
+}
