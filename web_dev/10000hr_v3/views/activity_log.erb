@@ -1,0 +1,15 @@
+<html>
+<head>
+  <title>Activity Log</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>MasterIt</h1>
+  <h2>Here is a list of all the progress you have made so far:</h2>
+  <ul id="skills">
+    <% @activity_log.each do |activity| %>
+      <li><%= activity['activity_name'] %></li>
+    <% end %>
+  </ul>
+</body>
+</html>
